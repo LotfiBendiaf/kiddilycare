@@ -1,0 +1,95 @@
+@import url('base.css');
+
+table {
+  background-color: white;
+  border-collapse: collapse;
+  box-shadow: 0 5px 15px -5px var(--secondaryColor);
+  border-radius: 5px;
+}
+
+thead {
+  border-radius: 5px;
+  color: var(--mainText);
+}
+
+th.table-headers {
+  font-family: var(--TitleFont);
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--secondaryTextColor);
+  border-bottom: 1px solid var(--lightColor);
+  border-radius: 5px;
+  text-align: center;
+  padding: 0.8rem 1.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
+}
+
+th h3 {
+  padding: 0.8rem 1.6rem;
+}
+
+td {
+  padding: 0.8rem 1.6rem;
+  text-align: center;
+  font-size: 13px;
+}
+
+tr {
+  transition: ease-out 0.3s;
+}
+
+.tableRow-deleted {
+  background-color: var(--tableRowDeleted);
+  transition: ease-out 0.2s;
+  border-radius: 5px;
+}
+
+.product-invoice {
+  color: var(--deliveredStatus);
+  text-decoration: none;
+}
+.product-invoice:hover {
+  color: var(--deliveredFont);
+}
+.status {
+  background-color: var(--secondaryColor);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+}
+
+.status.status-pending {
+  background-color: var(--pendingStatus);
+  color: var(--pendingFont);
+}
+.status.status-delivered {
+  background-color: var(--deliveredStatus);
+  color: var(--deliveredFont);
+}
+.status.status-canceled {
+  background-color: var(--canceledStatus);
+  color: var(--canceledFont);
+}
+
+.price {
+  color: var(--mainText);
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+/*color alternating rows*/
+/* tr:nth-child(even){
+    background-color: whitesmoke;
+    border-radius: 5px;
+} */
+
+.order-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.product-name {
+  text-align: left;
+}

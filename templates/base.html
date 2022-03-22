@@ -1,0 +1,254 @@
+{% load static %}
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <meta property="og:site_name" content="Kiddily Care" />
+    <!-- <meta property="og:url" content="https://crane-faction.com/apps/help-center"> -->
+    <meta property="og:title" content="Kiddily Care" />
+    <meta property="og:type" content="website" />
+    <meta
+      property="og:description"
+      content="Kiddily Care est la référence du monde du soin et beauté, appareils de nettoyage et soin de visage et corps.
+      Retrouvez les meilleurs appareils de soin de visage et corps, nettoyage de peau et accessoires"
+    />
+
+    <!-- <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Crâne Faction" />
+    <meta
+      name="twitter:description"
+      content="Crâne Faction est LA destination pour tous les fans de Têtes de Mort. Retrouve les meilleures bagues, t-shirts et vêtements bikers, gothique ou rock !"
+    /> -->
+
+    <link rel="icon" type="image/png" sizes="100x100" href="{% static 'images/favicon.ico' %}">
+
+    <!--Title-->
+    <title>{% block title %}{% endblock title %}</title>
+    <!--Meta description-->
+    {% block meta %} {% endblock meta %}
+
+    <!-- Style -->
+    {% block style %} {% endblock style %}
+
+    <!-- Scripts-->
+    {% block scripts %} {% endblock scripts %}
+
+    <!--Font Awesome-->
+    <script src="https://kit.fontawesome.com/e482781f42.js" crossorigin="anonymous"></script>
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+round|Material+Icons+Round"
+    rel="stylesheet">
+  </head>
+
+  <body>
+    <header id="header">
+      <a href="{% url 'store' %}">
+        <img class="logo" id="logo" src="{% static "images/kiddily_care_logo.png"%}" alt="">
+        <img class="logo hidden" id="icon" src="{% static "images/icon.png"%}" alt="">
+      </a>
+
+      <div>
+        <nav class="navbar">
+          <ul>
+            <li>
+              <a id="options" class="link" href="{% url 'collections' %}"
+                >Collections
+                <i class="fas fa-sort-down"></i>
+              </a>
+              <div class="mega-menu-collection">
+                <a href="{% url 'visage' %}" id="appareils-visage" class="collection-section">
+                  <h4>Appareils pour Visage</h4>
+                </a>
+                <a href="{% url 'corps' %}" id="soin-corps" class="collection-section">
+                  <h4>Soin du corps</h4>
+                </a>
+                <a href="{% url 'jade' %}" id="pierre-jade" class="collection-section">
+                  <h4>Pierre de Jade</h4>
+                </a>
+              </div>
+            </li>
+            <li>
+              <a id="options" class="link" href="#"
+                >Nouveautés
+                <i class="fas fa-sort-down"></i>
+              </a>
+              <div class="mega-menu-collection">
+                <a href="{% url 'ete' %}" id="mode-ete" class="collection-section">
+                  <h4>MODE ETE</h4>
+                </a>
+                <a href="{% url 'tendances' %}" id="tendances" class="collection-section">
+                  <h4>TENDANCES</h4>
+                </a>
+              </div>
+            </li>
+            <li>
+              <a id="options" class="link" href="#"
+                >Promotions
+                <i class="fas fa-sort-down"></i>
+              </a>
+              <div class="mega-menu-collection">
+                <a href="{% url 'beaute' %}" id="beaute" class="collection-section">
+                  <h4>BEAUTÉ</h4>
+                </a>
+                <a href="{% url 'sante' %}" id="soin-corps" class="collection-section">
+                  <h4>SANTÉ</h4>
+                </a>
+                <a href="{% url 'accessoires' %}" id="accessoires" class="collection-section">
+                  <h4>ACCESSOIRES</h4>
+                </a>
+              </div>
+            </li>
+
+            <li><a class="link" href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
+
+      <div class="searchBar-nav">
+        <form method="get">
+          <div class="searchBar">
+            <input
+              type="text"
+              id="myInput"
+              onkeyup="myFunction()"
+              placeholder="Search products..."
+            />
+          </div>
+        </form>
+      </div>
+
+     <div style="display: flex; align-items: center;">
+        <div style="position: relative">
+          <a class="cart-element" href="{% url 'cart' %}">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <div>{{ cartItems }}</div>
+          </a>
+        </div>
+  
+        <div class="dropdown hidden" data-dropdown >
+          <button class="profile" data-dropdown-button >
+            <i style="margin-left: 5px;" class="fas fa-list-ul" data-dropdown-button></i>
+          </button>
+          <div class="dropdown-menu">
+            <div class="searchBar-dropdown hidden">
+              <form method="get" class="">
+                <div class="searchBar">
+                  <input
+                    type="text"
+                    id="myInput"
+                    onkeyup="myFunction()"
+                    placeholder="Search products..."
+                  />
+                </div>
+              </form>
+            </div>
+            <hr class="searchBar-dropdown hidden">
+              
+                
+            <a href="{% url 'store' %}">
+              <span class="material-icons-round">
+                  home
+                  </span>
+                  <h3>Accueil</h3> 
+            </a>
+          
+            <hr>
+
+            <a>
+              <span class="material-icons-round">
+                  spa
+                  </span>
+                  <h3>Collections</h3>
+            </a>
+                <ul class="dropdown-collections">
+                  <li>
+                    <img src="{% static "images/kiddilycare_img_3.jpeg"%}" alt="">
+                    <a href="">Appareils pour visage</a>
+                  </li>
+                  <li>
+                    <img src="{% static "images/kiddilycare_img_4.png"%}" alt="">
+                    <a href="">Soin du corps</a>
+                  </li>
+                  <li>
+                    <img src="{% static "images/kiddilycare_img_7.jpeg"%}" alt="">
+                    <a href="">Pierres de Jade</a>
+                  </li>
+                </ul>
+        
+        
+            <a>
+              <span class="material-icons-round">
+                  grade
+                  </span>
+                  <h3>Nouveautés</h3>
+            </a>
+                <ul class="dropdown-collections">
+                  <li>
+                    <img src="{% static "images/kiddilycare_img_6.jpeg"%}" alt="">
+                    <a href="">Mode été</a>
+                  </li>
+                  <li>
+                    <img src="{% static "images/kiddilycare_img_2.jpeg"%}" alt="">
+                    <a href="">Tendances</a>
+                  </li>
+                </ul>
+        
+        
+            <a>
+              <span class="material-icons-round">
+                  discount
+                  </span>
+                  <h3>Promotions</h3>
+            </a>
+                <ul class="dropdown-collections">
+                  <li>
+                    <img src="{% static "images/kiddilycare_img_2.jpeg"%}" alt="">
+                    <a href="">Beaute</a>
+                  </li>
+                  <li>
+                    <img src="{% static "images/kiddilycare_img_1.jpeg"%}" alt="">
+                    <a href="">Santé</a>
+                  </li>
+                  <li>
+                    <img src="{% static "images/kiddilycare_img_5.jpeg"%}" alt="">
+                    <a href="">Accessoires</a>
+                  </li>
+                </ul>
+        
+                      <hr>
+              <a href="#contact" class="">
+                  <span class="material-icons-round">
+                      contact_mail
+                      </span>
+                      <h3>Contact</h3> 
+              </a>
+          </div>
+        </div>
+     </div>
+    
+    </header>
+    <main>{% block content %} {% endblock content %}</main>
+
+    <!--FOOTER -->
+    {% include "footer.html" %}
+    <script>
+      document.addEventListener("click", e => {
+    const isDropdownButton = e.target.matches('[data-dropdown-button]')
+    if (!isDropdownButton && e.target.closest('[data-dropdown]') != null) return
+
+    let currentDropdown
+    if (isDropdownButton) {
+        currentDropdown = e.target.closest('[data-dropdown]')
+        currentDropdown.classList.toggle('active')
+    }
+
+    document.querySelectorAll('[data-dropdown].active').forEach(dropdown => {
+        if (dropdown === currentDropdown) return
+        dropdown.classList.remove('active')
+    })
+})
+
+    </script>
+  </body>
+</html>

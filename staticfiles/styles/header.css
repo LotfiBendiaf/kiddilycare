@@ -1,0 +1,130 @@
+@import url('base.css');
+
+header {
+  background-color: white;
+  display: flex;
+  padding: 15px 20px;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  z-index: 5;
+  transition: 0.5s ease;
+  top: 0;
+  box-shadow: 0px 5px 8px -9px var(--mainColor);
+}
+
+.sub-header {
+  position: sticky;
+  height: 15px;
+  width: 100%;
+  background-color: var(--secondaryColor);
+}
+
+.logo {
+  height: 70px;
+  transition: 2s;
+}
+
+.logo-min {
+  width: 70px;
+  height: 100%;
+  display: none;
+}
+
+.navbar {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+}
+
+.navbar > ul {
+  display: flex;
+  list-style-type: none;
+}
+
+.navbar > ul > li {
+  padding: 0px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.options {
+  transition: 0.4s top;
+}
+
+.dropdown-arrow {
+  width: 20px;
+  height: 10px;
+  display: none;
+}
+
+.mega-menu-collection {
+  position: absolute;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: var(--lightColor);
+  height: 250px;
+  z-index: 1;
+  margin-top: 50px;
+  transition: opacity .3s ease-in, transform .5s ease-in;
+  opacity: 0;
+  transform: translateX(110%);
+}
+
+.navbar > ul > li:hover .mega-menu-collection {
+
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.navbar > ul > li:hover .dropdown-arrow {
+  display: block;
+}
+
+.collection-section {
+  width: 30%;
+  height: 80%;
+  border-radius: 5px;
+  text-align: center;
+  border: 2px solid var(--secondaryColor);
+}
+
+.searchBar {
+  text-align: center;
+}
+
+.searchBar > input {
+  border: var(--secondaryColor) solid 1px;
+  font-size: small;
+  border-radius: 5px;
+  padding: 10px;
+  float: right;
+  width: 70%;
+  height: min-content;
+}
+
+.cart {
+  width: 35px;
+  height: 35px;
+}
+
+.cart-element {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  width: 18px;
+  height: 18px;
+  font-size: 10px;
+  font-weight: bold;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  background-color: var(--mainColor);
+  color: white;
+  border-radius: 50%;
+}

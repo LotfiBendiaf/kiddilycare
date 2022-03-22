@@ -1,0 +1,399 @@
+<!--Base -->
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Kiddily Care | Produits de soin du visage et corps & pierres de Jade{% endblock title %}
+<!--Meta description-->
+{% block meta %}
+  <meta name="description" content="Shop Mountain est l'endroit de tous les adeptes des vetements, accessoires et materiels de montagne. 
+  Retrouve les meilleurs articles de randonnee ou d'equipement de montagne"> 
+{% endblock meta %}
+
+<!-- Style -->
+{% block style %}
+  <link rel="stylesheet" href="{% static "styles/main.css" %}">
+{% endblock style %}
+
+
+{% block content %}
+<div class="banner">
+  <div class="banner-info">
+    <h1>Soldes d'Hiver 2022 Jusqu'à <span id="mainColor">50%</span></h1>
+    <p>Du <span id="mainColor">25</span> Janvier au <span id="mainColor">2</span> Mars</p>
+  </div>
+</div>
+  
+<div class="main-container">
+    <div class="introduction">
+      <h1>Boutique beauté et bien-etre</h1>
+      <p>
+        Affirme fièrement ta nature profonde et libère-toi du regard des autres
+        chez Crâne Faction. Véritables symboles d’indépendance, nos produits Tête
+        de Mort te permettront d'exposer ton mode de vie et tes convictions avec
+        style.
+      </p>
+    </div>
+</div>
+
+  <hr>
+
+  <div class="collections main-container">
+    <div class="collection">
+      <img src="{% static "images/kiddilycare_img_2.jpeg" %}" alt="">
+      <h2>BEAUTÉ</h2>
+      <div class="collection-overlay"></div>
+      <a href="{% url 'beaute' %}"id="collection-btn-flt" class="btn collection-btn-flt">Voir la collection</a>
+    </div>
+
+    <div class="collection">
+      <img class="collection-img" src="{% static "images/kiddilycare_img_5.jpeg" %}" alt="">
+      <h2>SANTÉ</h2>
+      <div class="collection-overlay"></div>
+      <a href="{% url 'sante' %}" id="collection-btn-flt" class="btn collection-btn-flt">Voir la collection</a>
+    </div>
+
+    <div class="collection">
+      <img class="collection-img" src="{% static "images/kiddilycare_img_1.jpeg" %}" alt="">
+      <h2>ACCESSOIRES</h2>
+      <div class="collection-overlay"></div>
+      <a href="{% url 'accessoires' %}" id="collection-btn-flt" class="btn collection-btn-flt">Voir la collection</a>
+    </div>
+    
+  </div>
+
+  <hr>
+
+  <div class="bestsellers">
+      <div id="bestsellers" class="collection-dsc">
+        <h2>Meilleures ventes</h2>
+        <p>Plus de 100 clients satisfaits recommandent cette sélection de produits. 
+          Disponible chez <span id="mainColor">Kiddily Care
+            <img class="mini-icon" src="{% static "images/icon.png" %}" alt="">
+          </span>. Pour lequel d'entre eux allez vous opter ?
+          </p>
+      </div>
+    <div class="products">
+          {% for product in bestseller %}
+      <div class="product" data-product="{{product.id}}">
+        <div>
+          <img src="{{product.imageURL}}" alt="" />
+        </div>
+        <div>
+          <h3 class="price">
+            {% if product.isPromotional == 'Promo' %}
+            <del class="stroke">${{product.price|add:"15"|floatformat:2}}</del>
+            {% endif %}
+            ${{product.price|floatformat:2}}</h3>
+          <h3 class="product-name">{{product.product_name}}</h3>
+          <h5 class="category">{{product.category}}</h5>
+  
+        
+          <div class="rating">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+  
+        <div class="actions">
+          <button 
+          id="detail-btn"
+          class="details"
+          data-product="{{product.id}}"
+          data-name="{{product.product_name}}"
+          data-img="{{product.imageURL}}"
+          data-price="{{product.price}}"
+          data-desc="{{product.description}}">
+          Details
+          </button>
+          <button
+            id="add-btn"
+            data-product={{product.id}} data-action="add"
+            class="btn update-cart"
+            data-name="{{product.product_name}}"
+            data-img="{{product.imageURL}}"
+            data-price="{{product.price|floatformat:2}}"
+            >
+            <span style="margin-right: 20px;" class="fas fa-cart-plus"></span> Ajouter au pannier
+          </button>
+        </div>
+  
+        <div class="news">
+          <span>NEWS</span>
+        </div>
+  
+        {% if product.isPromotional == "Promo"%}
+        <div class="promo">
+          <span>PROMO</span>
+        </div>
+        {% endif %}
+      </div>
+  
+      {% endfor %}
+      </div>
+      <a class="btn-alt" href="{% url 'products' %}">Voir la collection &#x2192;</a>
+  </div>
+
+  <div class="container-1 slide-in from-left">
+    <div id="soin-visage" class="collection-dsc">
+      <h2>Soin pour visage</h2>
+      <p>Toute notre gamme de produits<span id="mainColor"> Kiddily Care
+        <img class="mini-icon" src="{% static "images/icon.png" %}" alt="">
+      </span> pour prendre soin de votre visage</p>
+    </div>
+  
+    <div class="products main-container">
+      {% for product in faceProducts %}
+      <div class="product" data-product="{{product.id}}">
+        <div>
+          <img src="{{product.imageURL}}" alt="" />
+        </div>
+        <div>
+          <h3 class="price">
+            {% if product.isPromotional == 'Promo' %}
+            <del class="stroke">${{product.price|add:"15"|floatformat:2}}</del>
+            {% endif %}
+            ${{product.price|floatformat:2}}</h3>
+          <h3 class="product-name">{{product.product_name}}</h3>
+          <h5 class="category">{{product.category}}</h5>
+  
+        
+          <div class="rating">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+  
+        <div class="actions">
+          <button 
+          id="detail-btn"
+          class="details"
+          data-product="{{product.id}}"
+          data-name="{{product.product_name}}"
+          data-img="{{product.imageURL}}"
+          data-price="{{product.price}}"
+          data-desc="{{product.description}}">
+          Details
+          </button>
+          <button
+            id="add-btn"
+            data-product={{product.id}} data-action="add"
+            class="btn update-cart"
+            data-name="{{product.product_name}}"
+            data-img="{{product.imageURL}}"
+            data-price="{{product.price|floatformat:2}}"
+            >
+            <span style="margin-right: 20px;" class="fas fa-cart-plus"></span> Ajouter au pannier
+          </button>
+        </div>
+  
+        <div class="news">
+          <span>NEWS</span>
+        </div>
+  
+        {% if product.isPromotional == "Promo"%}
+        <div class="promo">
+          <span>PROMO</span>
+        </div>
+        {% endif %}
+      </div>
+  
+      {% endfor %}
+    </div>
+
+    <a class="btn-alt" href="{% url 'visage' %}">Voir la collection &#x2192;</a>
+  </div>
+
+  <div class="container-2 slide-in from-right">
+    <img src="{% static "images/kiddilycare_img_1.jpeg" %}" alt="">
+    <div>
+      <h2>Appareils de soin visage</h2>
+      <p>
+        Toute la journée, votre visage est exposé à la pollution, aux poussières, à la transpiration et 
+        autres impuretés en tous genres… Vous le savez sans doute : nettoyer sa peau est essentiel, surtout 
+        le soir. Mais bien souvent, on a tendance à confondre démaquillage et nettoyage de la peau. 
+        C’est peu connu, et pourtant, si vous portez du maquillage, l’enlever à l’aide d’un produit 
+        démaquillant adapté ne suffit pas. Il faut, en plus de cela, procéder à un nettoyage approfondi 
+        des pores de votre peau pour la débarrasser des résidus du démaquillant et des saletés qui seraient 
+        passées entre les mailles du filet.
+        En bref, maquillage ou pas, l’emploi d’un nettoyant visage est recommandé dans toute routine beauté qui se respecte.
+      </p>
+      <a class="btn-alt" href="{% url 'visage' %}">Voir la collection &#x2192;</a>
+    </div>
+
+  </div>
+
+  <div class="container-2 slide-in from-left">
+    <div>
+      <h2>nettoyage corps et visage</h2>
+      <p>
+        L'étre humain s’est toujours soucié de son apparence. La preuve : les cosmétiques sont apparus 
+        dans l’Antiquité et ne nous ont plus quittés depuis! Ils jalonnent aujourd’hui les rebords 
+        de nos baignoires et remplissent les armoires de nos salles de bain. S’ils ont pris une telle 
+        importance, c’est parce que l’apparence et la santé sont des valeurs très importantes dans 
+        notre société actuelle. En bref, prendre soin de soi est devenu un véritable mode de vie, et 
+        la beauté est désormais un capital précieux et unique, à entretenir au quotidien.
+        et le visage est la premiere cible de ces soins !
+        <b>Kiddily Care</b> vous propose tout un assortissement de produits adaptès à vos besoins.
+      </p>
+      <a class="btn-alt" href="{% url 'corps' %}">Voir la collection &#x2192;</a>
+    </div>
+    <img src="{% static "images/kiddilycare_img_2.jpeg" %}" alt="">
+  </div>
+
+  <div class="container-1">
+    <div id="pierres-jade" class="collection-dsc">
+      <h2>Pierres de Jade Kiddily Care</h2>
+      <p>Toute notre gamme de produits de soins naturels<span id="mainColor"> Kiddily Care
+        <img class="mini-icon" src="{% static "images/icon.png" %}" alt="">
+      </span> pour prendre soin de tout votre corps</p>
+    </div>
+  
+    <div class="products main-container">
+      {% for product in jadeProducts %}
+      <div class="product fade-in" data-product="{{product.id}}">
+        <div>
+          <img src="{{product.imageURL}}" alt="" />
+        </div>
+        <div>
+          <h3 class="price">
+            {% if product.isPromotional == 'Promo' %}
+            <del class="stroke">${{product.price|add:"15"|floatformat:2}}</del>
+            {% endif %}
+            ${{product.price|floatformat:2}}</h3>
+          <h3 class="product-name">{{product.product_name}}</h3>
+          <h5 class="category">{{product.category}}</h5>
+  
+        
+          <div class="rating">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+  
+        <div class="actions">
+          <button 
+          id="detail-btn"
+          class="details"
+          data-product="{{product.id}}"
+          data-name="{{product.product_name}}"
+          data-img="{{product.imageURL}}"
+          data-price="{{product.price}}"
+          data-desc="{{product.description}}">
+          Details
+          </button>
+          <button
+            id="add-btn"
+            data-product={{product.id}} data-action="add"
+            class="btn update-cart"
+            data-name="{{product.product_name}}"
+            data-img="{{product.imageURL}}"
+            data-price="{{product.price|floatformat:2}}"
+            >
+            <span style="margin-right: 20px;" class="fas fa-cart-plus"></span> Ajouter au pannier
+          </button>
+        </div>
+  
+        <div class="news">
+          <span>NEWS</span>
+        </div>
+  
+        {% if product.isPromotional == "Promo"%}
+        <div class="promo">
+          <span>PROMO</span>
+        </div>
+        {% endif %}
+      </div>
+  
+      {% endfor %}
+    </div>
+    <a class="btn-alt" href="{% url 'jade' %}">Voir la collection &#x2192;</a>
+  </div>
+
+  
+
+<div class="modal" id="modal"></div>
+<div class="modal-bar" id="modal-bar"></div>
+<div id="overlay"></div>
+
+<!--Script-->
+<script defer src="{% static "js/main.js" %}"></script>
+<script defer src="{% static "js/process.js" %}"></script>
+
+<script>
+  function myFunction() {
+    // Declare variables
+    var input, filter, produits, a, i, j, txtValue;
+    input = document.getElementById("myInput");
+    filter = input.value.toUpperCase();
+    produits = document.getElementsByClassName("col-lg-4");
+    for (j = 0; j < produits.length; j++) {
+      console.log(produits[j]);
+      elt = produits[j].getElementsByTagName("h6");
+
+      // Loop through all tdst items, and hide those who don't match the search query
+      for (i = 0; i < elt.length; i++) {
+        a = elt[i];
+        txtValue = a.textContent || a.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          produits[j].style.display = "";
+        } else {
+          produits[j].style.display = "none";
+        }
+      }
+    }
+  }
+</script>
+<!--getToken-->
+<script type="text/javascript">
+// User
+var user = '{{ request.user }}'
+
+function getToken(name) {
+  let tokenValue = null;
+  if (document.cookie && document.cookie !== '') {
+      const tokens = document.cookie.split(';');
+      for (let i = 0; i < tokens.length; i++) {
+          const token = tokens[i].trim();
+          // Does this token string begin with the name we want?
+          if (token.substring(0, name.length + 1) === (name + '=')) {
+              tokenValue = decodeURIComponent(token.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return tokenValue;
+}
+const csrftoken = getToken('csrftoken');
+
+function getCookie(name) {
+  var cookieArr = document.cookie.split(";");
+
+  for (var i = 0; i < cookieArr.length; i++) {
+    var cookiePair = cookieArr[i].split("=");
+    if (name == cookiePair[0].trim()) {
+      return decodeURIComponent(cookiePair[1]);
+    }
+  }
+  return null;
+}
+
+var cart = JSON.parse(getCookie("cart"));
+
+if (cart == undefined) {
+  cart = {};
+  console.log("Cart created! : ", cart);
+  document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+}
+
+console.log("Cart : ", cart);
+
+</script>
+{% endblock content %}

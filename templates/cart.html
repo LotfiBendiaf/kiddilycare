@@ -1,0 +1,255 @@
+<!--Base -->
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Kiddily Care | Pannier{% endblock title %}
+<!--Meta description-->
+{% block meta %}
+  <meta name="description" content="Shop Mountain est l'endroit de tous les adeptes des vetements, accessoires et materiels de montagne. 
+  Retrouve les meilleurs articles de randonnee ou d'equipement de montagne"> 
+{% endblock meta %}
+
+<!-- Style -->
+{% block style %}
+<link rel="stylesheet" href="{% static "styles/cart.css" %}">
+<link rel="stylesheet" href="{% static "styles/main.css" %}">
+{% endblock style %}
+
+<!-- Scripts -->
+{% block scripts %}
+    <!-- Ajax  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% endblock scripts %}
+
+
+  {% block content %}
+    <div class="cart-container">
+
+      <div style="display: flex; justify-content: space-between; width: 100%;">
+        <a class="btn-alt" href="{% url 'store' %}">&#x2190; Return to store</a>
+        <a class="btn-alt" href="{% url 'checkout' %}">Continue &#x2192;</a>
+      </div>
+      <table>
+        <thead id="table-delete">
+          <th><h3 style="text-align: left;">Shopping cart</h3></th>
+        </thead>
+        <thead>
+          <tr>
+            <th id="table-product" class="table-headers" style="text-align: left;">Product</th>
+            <th class="table-headers">Image</th>
+            <th id="table-price" class="table-headers">price</th>
+            <th class="table-headers">Quantity</th>
+            <th id="table-delete" class="table-headers">Delete</th>
+            <th class="table-headers" style="white-space: nowrap;">sub total</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for item in items %}
+          <tr>
+            <td id="table-product" class="product-name">
+              <span
+                class="link details"
+                data-product="{{item.product.id}}"
+                data-name="{{item.product.product_name}}"
+                data-img="{{item.product.imageURL}}"
+                data-price="{{item.product.price}}"
+                data-desc="{{item.product.description}}">{{ item.product.product_name }}
+            </span>
+            </td>
+            <td>
+              <img
+                class="order-image"
+                src="{{ item.product.imageURL }}"
+                alt=""
+              />
+            </td>
+            <td id="table-price"  class="item-price">${{ item.product.price|floatformat:2 }}</td>
+            <td class="quantity" style="position: relative;">x <span class="item-quantity">{{ item.quantity }}</span>
+              <span 
+                class="fas fa-plus-circle update-cart" 
+                data-product={{item.product.id}} 
+                data-action="add" 
+                data-name="{{item.product.product_name}}"
+                data-img="{{item.product.imageURL}}">
+              </span>
+              <span class="fas fa-minus-circle update-cart" data-product={{item.product.id}} data-action="remove"></span>
+            </td>
+            <td id="table-delete" ><span class="fas fa-trash delete" data-product={{item.product.id}} data-action="delete"></span></td>
+            <td class="price">$ <span class="subtotal">{{ item.get_item_total|floatformat:2 }}</span></td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+      <br />
+      <table class="total-table">
+        <thead>
+          <tr>
+            <th class="table-headers">Items</th>
+            <th class="table-headers">Total</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><span class="items">{{ order.get_cart_items }}</span></td>
+            <td style="text-align: center" class="price">
+              $<span class="cart-total">{{ order.get_cart_total }}</span>
+            </td>
+            <td><a class="btn-alt" href="{% url 'checkout' %}">Continue &#x2192;</a></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="shipping-info">
+      <div>
+        <i class="fa-solid fa-leaf"></i>
+        <h3>Satisfait ou remboursé</h3>
+      </div>
+      <div>
+        <i class="fa-solid fa-dolly"></i>
+        <h3>Livraison offert</h3>
+      </div>
+      <div>
+        <i class="fa-solid fa-shield"></i>
+        <h3>Paiement securisé</h3>
+      </div>
+
+    </div>
+
+    </div>
+
+    <div style="background-color: aliceblue; padding: 2rem;">
+      <h2 style="text-align: center;">Produits qui pourraient vous intéresser</h2>
+    </div>
+    <div class="also-container">
+    
+      <div style="display: grid; grid-template-columns: repeat(2, fr);" class="products main-container">
+        {% for product in products %}
+        <div class="product fade-in" data-product="{{product.id}}">
+          <div>
+            <img src="{{product.imageURL}}" alt="" />
+          </div>
+          <div>
+            <h3 class="price">
+              {% if product.isPromotional == 'Promo' %}
+              <del class="stroke">${{product.price|add:"15"|floatformat:2}}</del>
+              {% endif %}
+              ${{product.price|floatformat:2}}</h3>
+            <h3 class="product-name">{{product.product_name}}</h3>
+            <h5 class="category">{{product.category}}</h5>
+    
+          
+            <div class="rating">
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star checked"></span>
+              <span class="fa fa-star"></span>
+            </div>
+          </div>
+    
+          <div class="actions">
+            <button 
+            id="detail-btn"
+            class="details"
+            data-product="{{product.id}}"
+            data-name="{{product.product_name}}"
+            data-img="{{product.imageURL}}"
+            data-price="{{product.price}}"
+            data-desc="{{product.description}}">
+            Details
+            </button>
+            <button
+              id="add-btn"
+              data-product={{product.id}} data-action="add"
+              class="btn update-cart"
+              data-name="{{product.product_name}}"
+              data-img="{{product.imageURL}}"
+              data-price="{{product.price|floatformat:2}}"
+              >
+              <span style="margin-right: 20px;" class="fas fa-cart-plus"></span> Ajouter au pannier
+            </button>
+          </div>
+    
+          <div class="news">
+            <span>NEWS</span>
+          </div>
+    
+          {% if product.isPromotional == "Promo"%}
+          <div class="promo">
+            <span>PROMO</span>
+          </div>
+          {% endif %}
+        </div>
+    
+        {% endfor %}
+      </div>
+  
+  
+  </div>
+    <div class="modal" id="modal"></div>
+    <div class="modal-bar" id="modal-bar"></div>
+    <div id="overlay"></div>
+</div>
+  <script defer src="{% static "js/process.js" %}"></script>
+  <script defer src="{% static "js/main.js" %}"></script>
+  <script>
+    // User
+    var user = '{{ request.user }}'
+    var email = '{{ request.user.email }}'
+
+    function getToken(name) {
+      let tokenValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const tokens = document.cookie.split(';');
+          for (let i = 0; i < tokens.length; i++) {
+              const token = tokens[i].trim();
+              // Does this token string begin with the name we want?
+              if (token.substring(0, name.length + 1) === (name + '=')) {
+                  tokenValue = decodeURIComponent(token.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return tokenValue;
+    }
+    const csrftoken = getToken('csrftoken');
+
+    function getCookie(name) {
+  var cookieArr = document.cookie.split(";");
+
+  for (var i = 0; i < cookieArr.length; i++) {
+    var cookiePair = cookieArr[i].split("=");
+    if (name == cookiePair[0].trim()) {
+      return decodeURIComponent(cookiePair[1]);
+    }
+  }
+  return null;
+}
+
+var cart = JSON.parse(getCookie("cart"));
+
+if (cart == undefined) {
+  cart = {};
+  console.log("Cart created! : ", cart);
+  document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+}
+
+console.log("Cart : ", cart);
+
+  </script>
+  <script>
+    $(function(){
+        $('.delete').click(function(e){
+            e.preventDefault();
+            var row = $(this).closest('tr');
+            row.addClass("tableRow-deleted");
+            row.hide(1000, function(){
+                this.remove(); 
+                location.reload()
+            });
+        });
+    });
+  </script>
+{% endblock content %}

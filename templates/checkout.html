@@ -1,0 +1,358 @@
+<!--Base -->
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Kiddily Care | Paiment{% endblock title %}
+<!--Meta description-->
+{% block meta %}
+  <meta name="description" content="Shop Mountain est l'endroit de tous les adeptes des vetements, accessoires et materiels de montagne. 
+  Retrouve les meilleurs articles de randonnee ou d'equipement de montagne"> 
+{% endblock meta %}
+
+<!-- Style -->
+{% block style %}
+  <link rel="stylesheet" href="{% static "styles/checkout.css" %}">
+  <link rel="stylesheet" href="{% static "styles/main.css" %}">
+{% endblock style %}
+
+<!-- Scripts -->
+{% block scripts %}
+    <!-- Ajax  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% endblock scripts %}
+
+
+  {% block content %}
+    <div class="cart-container">
+
+      <div style="width: 100%;">
+        <a class="btn-alt" href="{% url 'cart' %}">&#x2190; Return to cart</a>
+      </div>
+     
+      <div class="checkout">
+        <div class="shopping-cart">
+
+        <table class="total-table">
+          <thead>
+            <tr>
+              <th class="table-headers" >Items</th>
+              <th class="table-headers" >Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><span class="items">{{ order.get_cart_items }}</span></td>
+              <td class="price">
+                $<span class="cart-total" style="font-size: 1.4rem;">{{ order.get_cart_total|floatformat:2 }}</span>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <table>
+          <thead>
+            <th><h3>Shopping cart <i class="fa-solid fa-basket-shopping"></i></h3> </th>
+          </thead>
+          <thead>
+            <tr>
+              <th id="table-product" class="table-headers" style="text-align: left;">Product</th>
+              <th class="table-headers">Image</th>
+              <th class="table-headers">Quantity</th>
+              <th id="table-price" class="table-headers">price</th>
+              <th class="table-headers" style="white-space: nowrap;">sub total</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for item in items %}
+            <tr>
+              <td id="table-product" class="product-name">
+                <a class="link" href="">{{ item.product.product_name }}</a>
+              </td>
+              <td>
+                <img
+                  class="order-image"
+                  src="{{ item.product.imageURL }}"
+                  alt=""
+                />
+              </td>
+              <td class="quantity" style="position: relative;">x <span class="item-quantity">{{ item.quantity }}</span>
+              </td>
+              <td id="table-price" class="item-price">${{ item.product.price|floatformat:2 }}</td>
+              <td class="price">$<span class="subtotal">{{ item.get_item_total|floatformat:2 }}</span></td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+
+      <div>
+        <form class="user-information" id="form">
+
+          <div id="user-info">
+            <h3>Customer information</h3>
+            <div class="form">
+              <input id="username" type="text" name="name" required autocomplete="off" />
+              <label for="name" class="label-name">
+                <span class="content-name">Name</span>
+              </label>
+            </div>
+            <div class="form">
+              <input id="user-email" type="text" name="email" required autocomplete="off" />
+              <label for="email" class="label-name">
+                <span class="content-name">Email</span>
+              </label>
+            </div>
+          </div>
+          
+          <div class="shipping-information">
+
+            <h3>Shipping information <i class="fas fa-shipping-fast"></i></h3>
+
+            <!--Country list -->
+            <div class="btn-alt" style="margin-top: 20px;">
+              {% include "country-list.html" %}
+            </div>
+            <div style="display: flex;">
+              <div class="form">
+                <input type="text" name="address" required autocomplete="off" />
+                <label for="address" class="label-name">
+                  <span class="content-name">Address</span>
+                </label>
+              </div>
+              <div class="form" style="width: 30%;">
+                <input type="text" name="city" required autocomplete="off" />
+                <label for="city" class="label-name">
+                  <span class="content-name">City</span>
+                </label>
+              </div>
+            </div>
+  
+            <div style="display: flex;">
+              <div class="form">
+                <input type="text" name="state" required autocomplete="off" />
+                <label for="state" class="label-name">
+                  <span class="content-name">State</span>
+                </label>
+              </div>
+              <div class="form" style="width: 30%;">
+                <input type="text" name="zipcode" required autocomplete="off" />
+                <label for="zipcode" class="label-name">
+                  <span class="content-name">Zip code</span>
+                </label>
+              </div>
+            </div>
+
+          </div>
+
+            <input id="form-button" class="btn-alt" type="submit" value="Continue &#x2192;"></input>
+        </form>
+
+        <br id="line-break">
+        
+        <div class="payment-information hidden" id="payment-information">
+          <h3 style="margin-bottom: 20px;">Payment <i class="fas fa-credit-card"></i></h3>
+          <div id="paypal-button-container"></div>
+          <!-- <button id="make-payment">Make payment</button> -->
+          <div class="payment-icones">
+            <i class="fab fa-paypal"></i>
+            <i class="fab fa-cc-mastercard"></i>
+            <i class="fas fa-credit-card"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="shipping-info">
+      <div>
+        <i class="fa-solid fa-leaf"></i>
+        <h3>Satisfait ou remboursé</h3>
+      </div>
+      <div>
+        <i class="fa-solid fa-dolly"></i>
+        <h3>Livraison offert</h3>
+      </div>
+      <div>
+        <i class="fa-solid fa-shield"></i>
+        <h3>Paiement securisé</h3>
+      </div>
+
+    </div>
+
+    <!--Script-->
+    <script defer src="{% static "js/process.js" %}"></script>
+    <!-- Include the PayPal JavaScript SDK -->
+    <script src="https://www.paypal.com/sdk/js?client-id=AX_eKl22nz2Q1bOHHLaw-0Vqlcohpcq5NMfRXyisO0NJ0lj75oBEpWHj4ouHy4UNgJTXH_0tV80wAnIY&currency=USD"></script>
+    <script>
+      var total = '{{ order.get_cart_total }}'
+      // Render the PayPal button into #paypal-button-container
+      paypal.Buttons({
+
+        style: {
+              color:  'gold',
+              shape:  'rect',
+              label:  'pay',
+              height: 40,
+              fundingicons: 'true'
+          },
+
+          // Set up the transaction
+          createOrder: function(data, actions) {
+              return actions.order.create({
+                  purchase_units: [{
+                      amount: {
+                          value: parseFloat(total).toFixed(2),
+                      }
+                  }]
+              });
+          },
+
+          // Finalize the transaction
+          onApprove: function(data, actions) {
+              return actions.order.capture().then(function(orderData) {
+                  // Successful capture! For demo purposes:
+                  console.log('Capture result', orderData, JSON.stringify(orderData, null, 2));
+                  submitFormData()
+
+                  // Replace the above to show a success message within this page, e.g.
+                  // const element = document.getElementById('paypal-button-container');
+                  // element.innerHTML = '';
+                  // element.innerHTML = '<h3>Thank you for your payment!</h3>';
+                  // Or go to another URL:  actions.redirect('thank_you.html');
+              });
+          }
+
+
+      }).render('#paypal-button-container');
+    </script>
+    <script>
+        // User
+        var user = '{{ request.user }}'
+        var email = '{{ request.user.email }}'
+
+        function getToken(name) {
+          let tokenValue = null;
+          if (document.cookie && document.cookie !== '') {
+              const tokens = document.cookie.split(';');
+              for (let i = 0; i < tokens.length; i++) {
+                  const token = tokens[i].trim();
+                  // Does this token string begin with the name we want?
+                  if (token.substring(0, name.length + 1) === (name + '=')) {
+                      tokenValue = decodeURIComponent(token.substring(name.length + 1));
+                      break;
+                  }
+              }
+          }
+          return tokenValue;
+        }
+        const csrftoken = getToken('csrftoken');
+
+    </script>
+    <script>
+      $(function(){
+          $('.delete').click(function(e){
+              e.preventDefault();
+              var row = $(this).closest('tr');
+              row.addClass("tableRow-deleted");
+              row.hide(1000, function(){
+                  this.remove(); 
+                  location.reload()
+              });
+          });
+      });
+    </script>
+    <script type="text/javascript">
+      var shipping = '{{ order.shipping }}'
+
+      if (shipping == 'False') {
+        document.getElementsByClassName('shipping-information')[0].remove()
+      }
+
+      if (user != 'AnonymousUser') {
+        document.getElementById('user-info').classList.add("hidden")
+        document.getElementById("username").value = user
+        document.getElementById("user-email").value = email
+      }
+
+      if (shipping == 'False' && user != 'AnonymousUser') {
+        document.getElementsByClassName('user-information')[0].classList.add("hidden")
+        document.getElementsByClassName('payment-information')[0].classList.remove("hidden")
+        document.getElementById('line-break').classList.add("hidden")
+      }
+
+      var form = document.getElementById('form')
+
+      form.addEventListener( 'submit', function(e){
+        e.preventDefault()
+        console.log('Form submitted...')
+        document.getElementById('form-button').classList.add("hidden")
+        document.getElementsByClassName('payment-information')[0].classList.remove("hidden")
+      })
+
+//       document.getElementById('make-payment').addEventListener('click', function(e) {
+// submitFormData()
+//       })
+
+      function submitFormData() {
+        console.log("Pyament button clicked ")
+
+        var userFormData = {
+          'name': null,
+          'email': null,
+          'total': total,
+        }
+
+        var shippingInfo = {
+          'address': null,
+          'country': null,
+          'city': null,
+          'state': null,
+          'zipcode': null,
+        }
+
+        if (shipping != 'False') {
+          shippingInfo.address = form.address.value
+          shippingInfo.country = form.country.value
+          shippingInfo.city = form.city.value
+          shippingInfo.state = form.state.value
+          shippingInfo.zipcode = form.zipcode.value
+        }
+
+        console.log("Name : ", form.name.value)
+
+        if (user == 'AnonymousUser') {
+          userFormData.name = form.name.value
+          userFormData.email = form.email.value
+        } else {
+          userFormData.name = user
+          userFormData.email = email
+        }
+
+        var url = '/process_order/'
+        fetch(url, {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json',
+            'X-CSRFToken': csrftoken,
+          },
+          body: JSON.stringify({
+            'form': userFormData,
+            'shipping': shippingInfo,
+          })
+        })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log('Success', data);
+          alert('Transaction completed');
+
+          cart = {}
+          document.cookie = 'cart=' + JSON.stringify(cart) + ";domain=;path=/"
+
+          window.location.href = "{% url 'store' %}"
+        })
+
+      }
+
+
+    </script>
+{% endblock content%}

@@ -1,0 +1,61 @@
+{% load static %}
+<footer>
+  <div>
+    <div>
+        <img class="logo head" id="logo-footer" src="{% static "images/kiddily_care_logo2.png"%}" alt="">
+        <img class="logo hidden" id="icon-footer" src="{% static "images/icon.png"%}" alt="">
+        <ul>
+            <li><a href="{% url 'products' %}">Produits  </a></li>
+            <li><a href="{% url 'collections' %}">Collections </a></li>
+            <li><a href="{% url 'tendances' %}">Nouveautés </a></li>
+            <li><a href="{% url 'tendances' %}">Meilleures ventes </a></li>
+        </ul>
+      </div>
+      <div>
+        <h2 class="head">Informations</h2>
+        <ul>
+          <li><a href="{% url 'about' %}">A Propos </a></li>
+          <li><a href="{% url 'blog' %}">Blog </a></li>
+          <li><a href="{% url 'shipping_policy' %}">Politique d'expedition </a></li>
+          <li><a href="{% url 'refund_policy' %}">Politique de retour et de remboursement </a></li>
+          <li><a href="{% url 'help_center' %}">FAQ </a></li>
+        </ul>
+      </div>
+      <div id="contact">
+        <h2 class="head">Contact</h2>
+        <ul>
+            <li>
+                <address>
+                    <a href="mailto: contact@kiddilycare.com">contact@kiddilycare.com</a> 
+                </address>  
+            </li>
+            
+            <li><a>Tel : 05274579657 </a></li>
+            <li><a>Adresse : New York city 567e </a></li>
+            
+            <li>
+                <p>
+                    Nous vous repondrons en moins de 24h (du
+                    lundi au vendredi et de 8h à 18h)
+                    </p>
+            </li>
+        </ul>
+      </div>
+      <img class="logo" id="logo" src="{% static "images/icon.png"%}" alt="">
+      <h2>Rejoignez-nous sur les reseaux : </h2>
+      <div class="socials">
+        <i class="fab fa-facebook-square"></i>
+        <i class="fab fa-instagram"></i>
+        <i class="fab fa-twitter-square"></i>
+      </div>
+    </div>
+
+    <hr>
+
+    <div class="footer-info">
+        <a href="{% url 'privacy_policy' %}">Politique de confidentialité</a>
+        <p>&copy; 2022, Kiddily Care.</p>
+        <a href="{% url 'terms_of_service' %}">Conditions generales de vente et d'utilisations</a>
+    </div>
+  
+</footer>

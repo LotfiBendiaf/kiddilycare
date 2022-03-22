@@ -1,0 +1,138 @@
+<!--Base -->
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Kiddily Care | Collection Accessoires{% endblock title %}
+<!--Meta description-->
+{% block meta %}
+  <meta name="description" content="Kiddily Care est la référence du monde du soin et beauté, appareils de nettoyage et soin de visage et corps.
+  Retrouvez les meilleurs appareils de soin de visage et corps, nettoyage de peau et accessoires"> 
+{% endblock meta %}
+
+<!-- Style -->
+{% block style %}
+  <link rel="stylesheet" href="{% static "styles/main.css" %}">
+{% endblock style %}
+
+
+{% block content %}
+<div class="container-1">
+    <div id="pierres-jade" class="collection-dsc">
+      <h2>Accessoires</h2>
+      <p>Toute notre gamme de produits <span id="mainColor"> Kiddily Care
+        <img class="mini-icon" src="{% static "images/icon.png" %}" alt="">
+      </span> pour prendre soin de tout votre corps</p>
+    </div>
+  
+    <div class="products main-container">
+      {% for product in produitsAccessoires %}
+      <div class="product" data-product="{{product.id}}">
+        <div>
+          <img src="{{product.imageURL}}" alt="" />
+        </div>
+        <div>
+          <h3 class="price">
+            {% if product.isPromotional == 'Promo' %}
+            <del class="stroke">${{product.price|add:"15"|floatformat:2}}</del>
+            {% endif %}
+            ${{product.price|floatformat:2}}</h3>
+          <h3 class="product-name">{{product.product_name}}</h3>
+          <h5 class="category">{{product.category}}</h5>
+  
+        
+          <div class="rating">
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star"></span>
+          </div>
+        </div>
+  
+        <div class="actions">
+          <button 
+          id="detail-btn"
+          class="details"
+          data-product="{{product.id}}"
+          data-name="{{product.product_name}}"
+          data-img="{{product.imageURL}}"
+          data-price="{{product.price}}"
+          data-desc="{{product.description}}">
+          Details
+          </button>
+          <button
+            id="add-btn"
+            data-product={{product.id}} data-action="add"
+            class="btn update-cart"
+            data-name="{{product.product_name}}"
+            data-img="{{product.imageURL}}"
+            data-price="{{product.price|floatformat:2}}"
+            >
+            <span style="margin-right: 20px;" class="fas fa-cart-plus"></span> Ajouter au pannier
+          </button>
+        </div>
+  
+        <div class="news">
+          <span>NEWS</span>
+        </div>
+  
+        {% if product.isPromotional == "Promo"%}
+        <div class="promo">
+          <span>PROMO</span>
+        </div>
+        {% endif %}
+      </div>
+  
+      {% endfor %}
+    </div>
+  </div>
+
+  <!--Script-->
+    <script defer src="{% static "js/main.js" %}"></script>
+    <script defer src="{% static "js/process.js" %}"></script>
+
+    <!--getToken-->
+<script type="text/javascript">
+    // User
+    var user = '{{ request.user }}'
+    
+    function getToken(name) {
+      let tokenValue = null;
+      if (document.cookie && document.cookie !== '') {
+          const tokens = document.cookie.split(';');
+          for (let i = 0; i < tokens.length; i++) {
+              const token = tokens[i].trim();
+              // Does this token string begin with the name we want?
+              if (token.substring(0, name.length + 1) === (name + '=')) {
+                  tokenValue = decodeURIComponent(token.substring(name.length + 1));
+                  break;
+              }
+          }
+      }
+      return tokenValue;
+    }
+    const csrftoken = getToken('csrftoken');
+    
+    function getCookie(name) {
+      var cookieArr = document.cookie.split(";");
+    
+      for (var i = 0; i < cookieArr.length; i++) {
+        var cookiePair = cookieArr[i].split("=");
+        if (name == cookiePair[0].trim()) {
+          return decodeURIComponent(cookiePair[1]);
+        }
+      }
+      return null;
+    }
+    
+    var cart = JSON.parse(getCookie("cart"));
+    
+    if (cart == undefined) {
+      cart = {};
+      console.log("Cart created! : ", cart);
+      document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+    }
+    
+    console.log("Cart : ", cart);
+    
+    </script>
+{% endblock content %}

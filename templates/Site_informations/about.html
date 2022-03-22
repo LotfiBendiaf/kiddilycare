@@ -1,0 +1,116 @@
+<!--Base -->
+{% extends 'base.html' %} {% load static %} {% block title %}Kiddily Care | A
+propos{% endblock title %}
+<!--Meta description-->
+{% block meta %}
+<meta
+  name="description"
+  content="Shop Mountain est l'endroit de tous les adeptes des vetements, accessoires et materiels de montagne. 
+  Retrouve les meilleurs articles de randonnee ou d'equipement de montagne"
+/>
+{% endblock meta %}
+
+<!-- Style -->
+{% block style %} 
+<link rel="stylesheet" href="{% static "styles/about.css" %}">
+<link rel="stylesheet" href="{% static "styles/main.css" %}">
+{% endblock style %} 
+{% block content %}
+
+<div class="apropos-block-1">
+  <h1>A propos de KIDDILY CARE</h1>
+  <p>
+    Kiddily Care est boutique electronique de produits divers pour votre corps
+    et visage (Accessoires, produits ou encore soins naturels), Si vous etes
+    dans cette section, c'est surement que vous souhaiteriez en savoir plus sur
+    nous, nos origines notre histoire et découvrir qui on est. Nous vous livrons
+    à vous en toute transparence.
+  </p>
+</div>
+
+<div class="apropos-block-2">
+  <div>
+    <h2>NOTRE HISTOIRE</h2>
+    <p>
+      Étant donné que nous évoluons dans une société basée sur l'apparence et
+      l'élégance qu'on le veuille ou non la façon dont nous prenons soin de
+      notre corps reflète la valeur que nous accordons à nous-mêmes. <br />
+    </p>
+  </div>
+  <img class="collection-img" src="{% static "images/kiddilycare_img_3.jpeg" %}"
+  alt="">
+</div>
+
+<div class="apropos-block-2">
+  <img class="collection-img" src="{% static "images/kiddilycare_img_2.jpeg" %}"
+  alt="">
+  <div>
+    <h2>L'interet de Kiddily Care</h2>
+    <p>
+      Nous venons avec notre boutique pour répondre à une problèmatique :
+      <b>Comment bien prendre soin de notre corps sans depenser des folies ?</b
+      ><br />
+      Notre mission est de réunir nos connaissances et notre expérience avec des
+      produits pour satisfaire nos clientèle et ce en vous offrant le meilleur
+      de notre marque Kiddily Care afin de prendre soin de votre corps en bonne
+      santé avec des produits haut de gamme abordables ainsi que des traitements
+      à base naturelle.
+    </p>
+  </div>
+</div>
+
+<div class="apropos-block-2">
+  <div>
+    <h2>DES FOURNISSEURS TRIÉS SUR LE VOLET</h2>
+    <p>
+      Nous souhaitons offrir les produits tête de mort du plus haut niveau de
+      qualité qui soit dans la boutique. C'est pourquoi nous travaillons
+      exclusivement avec des fornisseurs reconnus pour leur expertise et leur
+      transparence. Avec nous, pas de compromis : rigueur et excellence sont la
+      devise Kiddily Care.
+    </p>
+  </div>
+  <img class="collection-img" src="{% static "images/kiddilycare_img_5.jpeg" %}"
+  alt="">
+</div>
+
+<div class="apropos-block-3">
+  <div class="block-3-content">
+    <img class="collection-img" src="{% static "images/citation-1.jpeg" %}"
+    alt="">
+    <div style="margin-top: 10px">
+      <h4>Alain Ayache , Lettres à Prunelle</h4>
+    </div>
+    <p>
+      "Il ne faut pas s'interroger sur le sens de notre vie... Chaque jour est
+      en lui-même une éternité, et il faudrait être bien ingrat pour le gâcher.
+      Croque, chaque matin, les fruits les plus goûteux avant qu'ils se gâtent.
+      Il faut, savoir que, demain, ces bienfaits que sont la beauté, la santé,
+      la fortune pourront t'être ôtés aussi facilement qu'ils t'ont été offerts
+      !"
+    </p>
+  </div>
+  <div class="block-3-content">
+    <img class="collection-img" src="{% static "images/citation-2.jpeg" %}" alt="">
+    <div style="margin-top: 10px">
+      <h4>Christian Bobin ,
+        L'éloignement du monde, p.57</h4>
+    </div>
+    <p>
+      "La beauté est une guérison de l'esprit par aggravation de son mal - du
+      sel lancé sur une blessure franche."
+    </p>
+  </div>
+  <div class="block-3-content">
+    <img class="collection-img" src="{% static "images/citation-3.jpeg" %}" alt="">
+    <div style="margin-top: 10px">
+      <h4>Platon</h4>
+    </div>
+    <p>
+      "Le premier bien est la santé, le deuxième la beauté, le troisième la richesse."
+    </p>
+  </div>
+</div>
+
+
+{% endblock content%}

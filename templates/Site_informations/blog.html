@@ -1,0 +1,32 @@
+<!--Base -->
+{% extends 'base.html' %} {% load static %} {% block title %}Kiddily Care |
+Pannier{% endblock title %}
+<!--Meta description-->
+{% block meta %}
+<meta
+  name="description"
+  content="Shop Mountain est l'endroit de tous les adeptes des vetements, accessoires et materiels de montagne. 
+  Retrouve les meilleurs articles de randonnee ou d'equipement de montagne"
+/>
+{% endblock meta %}
+
+<!-- Style -->
+{% block style %} 
+<link rel="stylesheet" href="{% static "styles/main.css" %}">
+{% endblock style %} 
+
+{% block content %}
+
+<h1 class="main-container">Derniers articles</h1>
+<div class="articles main-container">
+  <div class="article">
+    {% for article in articles %}
+    <h3 class="article-title">{{ article.title}}</h3>
+    <h5 style="margin: 0;">{{ article.author}}</h5>
+    <h6 style="margin: 0;">{{ article.date}}</h6>
+    <br>
+    <p class="text">{{ article.text}}</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock content%}

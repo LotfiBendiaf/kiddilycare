@@ -1,0 +1,40 @@
+@import url('base.css');
+@import url('header.css');
+@import url('table.css');
+
+table {
+    width: 100%;
+}
+
+.fa-trash {
+    color: var(--dangerStatus);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fa-trash:hover {
+    color: var(--dangerFont);
+    cursor: pointer;
+}
+
+.fa-plus-circle {
+    position: absolute;
+    top: 45%;
+    right: 28%;
+    color: var(--successStatus);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fa-minus-circle {
+    position: absolute;
+    top: 45%;
+    left: 28%;
+    color: var(--dangerStatus);
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.fa-plus-circle:hover, .fa-minus-circle:hover {
+    color: var(--mainColor);
+}

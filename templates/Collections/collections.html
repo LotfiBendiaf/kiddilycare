@@ -1,0 +1,99 @@
+<!--Base -->
+{% extends 'base.html' %} 
+{% load static %}
+{% block title %}Kiddily Care | Collection Accessoires{% endblock title %}
+<!--Meta description-->
+{% block meta %}
+  <meta name="description" content="Kiddily Care est la référence du monde du soin et beauté, appareils de nettoyage et soin de visage et corps.
+  Retrouvez les meilleurs appareils de soin de visage et corps, nettoyage de peau et accessoires"> 
+{% endblock meta %}
+
+<!-- Style -->
+{% block style %}
+  <link rel="stylesheet" href="{% static "styles/main.css" %}">
+{% endblock style %}
+
+
+{% block content %}
+
+<div class="collections-page">
+    <a href="{% url 'products' %}" id="pierre-jade" class="collection-block" href="">
+        <h2>Tous les produits</h2>
+    </a>
+    <a href="{% url 'corps' %}" id="soin-corps" class="collection-block" href="">
+        <h2>Produits pour corps</h2>
+    </a>
+    <a href="{% url 'visage' %}" id="appareils-visage" class="collection-block" href="">
+        <h2>Produits pour Visage</h2>
+    </a>
+    <a href="{% url 'accessoires' %}" id="accessoires" class="collection-block" href="">
+        <h2>Accessoires</h2>
+    </a>
+    <a href="{% url 'jade' %}" id="pierre-jade" class="collection-block" href="">
+        <h2>Produits a base naturel & pierres de Jade</h2>
+    </a>
+    <a href="{% url 'beaute' %}" id="beaute" class="collection-block" href="">
+        <h2>Produits beauté</h2>
+    </a>
+    <a href="{% url 'sante' %}" id="soin-corps" class="collection-block" href="">
+        <h2>Produits santé</h2>
+    </a>
+    <a href="{% url 'ete' %}" id="mode-ete" class="collection-block" href="">
+        <h2>Mode été</h2>
+    </a>
+    <a href="{% url 'tendances' %}" id="tendances" class="collection-block" href="">
+        <h2>Tendances</h2>
+    </a>
+
+</div>
+
+<!--Script-->
+<script defer src="{% static "js/main.js" %}"></script>
+<script defer src="{% static "js/process.js" %}"></script>
+
+<!--getToken-->
+<script type="text/javascript">
+// User
+var user = '{{ request.user }}'
+
+function getToken(name) {
+  let tokenValue = null;
+  if (document.cookie && document.cookie !== '') {
+      const tokens = document.cookie.split(';');
+      for (let i = 0; i < tokens.length; i++) {
+          const token = tokens[i].trim();
+          // Does this token string begin with the name we want?
+          if (token.substring(0, name.length + 1) === (name + '=')) {
+              tokenValue = decodeURIComponent(token.substring(name.length + 1));
+              break;
+          }
+      }
+  }
+  return tokenValue;
+}
+const csrftoken = getToken('csrftoken');
+
+function getCookie(name) {
+  var cookieArr = document.cookie.split(";");
+
+  for (var i = 0; i < cookieArr.length; i++) {
+    var cookiePair = cookieArr[i].split("=");
+    if (name == cookiePair[0].trim()) {
+      return decodeURIComponent(cookiePair[1]);
+    }
+  }
+  return null;
+}
+
+var cart = JSON.parse(getCookie("cart"));
+
+if (cart == undefined) {
+  cart = {};
+  console.log("Cart created! : ", cart);
+  document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+}
+
+console.log("Cart : ", cart);
+
+</script>
+{% endblock content %}
