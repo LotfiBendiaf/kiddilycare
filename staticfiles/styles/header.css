@@ -3,8 +3,8 @@
 header {
   background-color: white;
   display: flex;
-  padding: 15px 20px;
-  justify-content: space-between;
+  padding: 1rem 1.5rem;
+  justify-content: space-between;  
   align-items: center;
   position: sticky;
   z-index: 5;
@@ -49,8 +49,13 @@ header {
   align-items: center;
 }
 
-.options {
+#options {
   transition: 0.4s top;
+  display: flex;
+}
+
+#options > i{
+  margin-left: 10px;
 }
 
 .dropdown-arrow {
@@ -81,6 +86,10 @@ header {
   opacity: 1;
 }
 
+.navbar > ul > li:not( :hover) .mega-menu-collection {
+  transition-delay:.5s;
+}
+
 .navbar > ul > li:hover .dropdown-arrow {
   display: block;
 }
@@ -90,7 +99,69 @@ header {
   height: 80%;
   border-radius: 5px;
   text-align: center;
-  border: 2px solid var(--secondaryColor);
+  background-position: center;
+  background-size: cover;
+  transition: 300ms;
+  box-shadow: inset 0 0 0 100px var(--opacityColor);
+}
+
+.collection-section:hover {
+  background-color: red;
+}
+
+
+.collection-section > h4{
+  font-size: 1.2rem;
+  margin: 1rem;
+  color: var(--mainColor);
+  text-transform: uppercase;
+}
+
+#appareils-visage{
+  background-image: url(/static/images/kiddilycare_img_3.jpeg);
+}
+#appareils-visage:hover{
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.3);
+}
+#soin-corps{
+  background-image: url(/static/images/kiddilycare_img_4.png);
+}
+#pierre-jade{
+  background-image: url(/static/images/kiddilycare_img_7.jpeg);
+}
+#pierres-jade{
+  background-image: url(/static/images/kiddilycare_img_7.jpeg);
+  box-shadow: inset 0 0 0 100px rgba(0, 0, 0, 0.3);
+}
+#mode-ete{
+  background-image: url(/static/images/kiddilycare_img_6.jpeg);
+}
+#tendances{
+  background-image: url(/static/images/kiddilycare_img_2.jpeg);
+}
+#beaute{
+  background-image: url(/static/images/kiddilycare_img_2.jpeg);
+}
+#accessoires{
+  background-image: url(/static/images/kiddilycare_img_5.jpeg);
+}
+#soin-corps:hover{
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.3);
+}
+#pierre-jade:hover{
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.3);
+}
+#mode-ete:hover{
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.3);
+}
+#tendances:hover{
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.3);
+}
+#beaute:hover{
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.3);
+}
+#accessoires:hover{
+  box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.3);
 }
 
 .searchBar {
@@ -103,7 +174,7 @@ header {
   border-radius: 5px;
   padding: 10px;
   float: right;
-  width: 70%;
+  width: 100%;
   height: min-content;
 }
 
@@ -112,12 +183,23 @@ header {
   height: 35px;
 }
 
-.cart-element {
+.cart-element > i{
+  font-size: 2rem;
+  color: var(--secondaryColor);
+  transition: transform 300ms ease-in-out;
+}
+
+.cart-element > i:hover{
+  color: var(--thirdColor);
+  transform: scale(1.2);
+}
+
+.cart-element > div{
   position: absolute;
-  top: -5px;
-  right: -5px;
-  width: 18px;
-  height: 18px;
+  top: -8px;
+  right: -8px;
+  width: 1rem;
+  height: 1rem;
   font-size: 10px;
   font-weight: bold;
   display: flex;
@@ -127,4 +209,106 @@ header {
   background-color: var(--mainColor);
   color: white;
   border-radius: 50%;
+}
+
+.profile{
+  font-size: 1rem;
+  font-weight: 600;
+  background: var(--lightColor);
+  border: none;
+  color: var(--secondaryColor);
+  cursor: pointer;
+  padding: 0.8rem;
+  transition: 200ms ease-in;
+  border-radius: 5px;
+}
+
+.dropdown.active > .profile
+.profile:hover{
+  color: black;
+  background-color: rgba(0, 0, 0, 0.103);
+}
+
+.dropdown{
+  position: relative;
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin-left: 1rem;
+}
+
+.dropdown a{
+  display: flex;
+  flex-direction: row;
+  color: var(--secondaryColor);
+  margin: 0.4rem;
+  gap: 1rem;
+  align-items: center;
+  position: relative;
+  height: 1.5rem;
+  transition: all 300ms ease;
+}
+
+.dropdown a h3 {
+  margin: 0;
+  color: var(--secondaryColor);
+}
+.dropdown hr {
+  margin: 0.7rem;
+}
+
+.dropdown a h3:hover {
+  color: var(--mainColor);
+}
+
+.dropdown-menu{
+  display: flex;
+  flex-direction: column;
+  width: max-content;
+  position: absolute;
+  right: 0;
+  top: calc(100% + 1.3rem);
+  background-color: white;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 15px 0 rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 300ms ease-in-out, transform 300ms ease-in-out;
+  transform: translateY(-10px);
+}
+
+.dropdown.active > .profile + .dropdown-menu{
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.dropdown-menu > .hidden{
+  display: none;
+  
+}
+
+.dropdown-collections{
+  list-style: none;
+  text-align: center;
+  
+}
+
+.dropdown-collections > li{
+  display: flex;
+  align-items: center;
+  padding: 0rem;
+}
+
+.dropdown-collections > li > a{
+  font-size: 0.7rem;
+  color: var(--secondaryTextColor);
+  padding: 0rem;
+}
+
+.dropdown-collections > li > img{
+  border-radius: 50%;
+  width: 1rem;
+  height: 1rem;
 }

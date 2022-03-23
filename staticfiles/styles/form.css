@@ -14,7 +14,7 @@
   height: 100%;
   font-size: 13px;
   font-family: var(--secondaryFont);
-  color: var(--mainText);
+  color: var(--mainTextColor);
   padding-top: 15px;
   border: none;
   outline: none;
@@ -30,7 +30,7 @@
   pointer-events: none;
   border-bottom: 1px solid var(--lightColor);
   border-radius: 5px;
-  color: var(--mainColor);
+  color: var(--secondaryTextColor);
 }
 
 .form label::after {
@@ -40,10 +40,10 @@
   bottom: -1px;
   width: 100%;
   height: 100%;
-  border-bottom: 3px solid var(--mainColor);
+  border-bottom: 3px solid var(--secondaryColor);
   transform: translateX(-100%);
   transition: 0.3s;
-  color: var(--mainColor);
+  color: var(--secondaryColor);
 }
 
 .content-name {
@@ -53,12 +53,12 @@
   font-weight: 500;
   left: 2px;
   transition: 0.3s;
-  color: var(--mainColor);
+  color: var(--secondaryTextColor);
 }
 
 .form input:focus + .label-name .content-name,
 .form input:valid + .label-name .content-name {
-  transform: translateY(-150%);
+  transform: translateY(-140%);
 }
 
 .form input:focus + .label-name::after,

@@ -85,9 +85,9 @@ tr {
 } */
 
 .order-image {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
+  width: 75px;
+  height: 75px;
+  margin: 0rem;
 }
 
 .product-name {

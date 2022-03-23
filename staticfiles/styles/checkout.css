@@ -2,7 +2,21 @@
 @import url('header.css');
 @import url('table.css');
 @import url('form.css');
+@import url('footer.css');
 
+.cart-container {
+
+    display: flex;
+    flex-direction: column;
+    padding: 1rem;
+    gap: 1rem;
+    margin: 1rem auto;
+  }
+
+.checkout{
+    display: flex;
+    gap: 1rem;
+}
 .user-information{
     width: 100%;
     box-shadow: 0 5px 15px -5px var(--secondaryColor);
@@ -23,6 +37,7 @@
 .shopping-cart{
     display: flex;
     flex-direction: column;
+    gap: 1rem;
 }
 
 .fa-trash {
@@ -83,3 +98,57 @@ td {
     width: 50px;
     height: 40px;
 }
+
+.shipping-info{
+    display: flex;
+    width: 100%;
+    background-color: white;
+    padding: 2rem 3rem;
+    justify-content: space-around;
+}
+
+.shipping-info > div{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.shipping-info > div > i{
+    font-size: 2rem;
+    margin-bottom: 2rem;
+}
+
+@media screen and (max-width: 900px) {
+    .checkout{
+        display: flex;
+        flex-direction: column;
+      }
+      #table-product{
+          display: none;
+      }
+      #table-delete{
+          display: none;
+      }
+      #table-price{
+          display: none;
+      }
+      th.table-headers,
+      th h3,
+      td {
+        padding: 0.2rem;
+
+      }   
+      .shipping-info{
+        padding: 0.8rem 1.2rem;
+    }
+    }
+
+    @media screen and (max-width: 500px) {
+        .shipping-info{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 0.8rem 1.2rem;
+        }
+    }

@@ -1,0 +1,77 @@
+@import url("base.a79987e4efa9.css");
+
+footer{
+    background-color: var(--mainTextColor);
+}
+
+footer > div{
+    background-color: var(--mainTextColor);
+    padding: 20px 5vw;
+    color: white;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    
+}
+footer h1,
+footer h2{
+    color: var(--alternativeColor);
+    margin: 0rem;
+}
+
+footer .head{
+    align-items: center;
+    height: 70px;
+    margin-bottom: 2rem;
+}
+
+footer p {
+    color: var(--thirdColor);
+}
+
+footer a{
+    cursor: pointer;
+    color: var(--alternativeColor);
+    text-decoration: none;
+    transition: 0.3s;
+    line-height: 2rem;
+    font-size: 14px;
+  }
+footer a:hover{
+    color: var(--mainColor);
+  }
+
+footer > div > div > ul {
+    list-style-type: none;
+}
+
+.socials{
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+}
+
+.socials > i{
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--alternativeColor);
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.socials > i:hover{
+    color: var(--secondaryColor);    
+}
+
+footer hr{
+    width: 80%;
+    color: var(--mainTextColor);
+}
+
+footer .footer-info{
+    display: flex;
+    justify-content: space-around;
+}

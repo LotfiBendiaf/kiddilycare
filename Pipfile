@@ -6,6 +6,11 @@ name = "pypi"
 [packages]
 django = "*"
 pillow = "*"
+environs = "*"
+psycopg2-binary = "*"
+dj-database-url = "*"
+whitenoise = "*"
+gunicorn = "*"
 
 [dev-packages]
 
