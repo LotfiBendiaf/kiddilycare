@@ -28,7 +28,6 @@ TEMPLATES_DIR = str(BASE_DIR.joinpath('templates'))
 SECRET_KEY = env.str("SECRET_KEY")
 
 # SECURITY WARNING: don't run with debug turned on in production!
-# DEBUG = False
 
 DEBUG = env.bool("DEBUG", default=False)
 
