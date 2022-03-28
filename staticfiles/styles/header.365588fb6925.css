@@ -1,4 +1,4 @@
-@import url('base.css');
+@import url("base.a79987e4efa9.css");
 
 header {
   background-color: white;
@@ -119,32 +119,32 @@ header {
 }
 
 #appareils-visage{
-  background-image: url(/static/images/kiddilycare_img_3.jpeg);
+  background-image: url("/static/images/kiddilycare_img_3.96c48c94f263.jpeg");
 }
 #appareils-visage:hover{
   box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.3);
 }
 #soin-corps{
-  background-image: url(/static/images/kiddilycare_img_4.png);
+  background-image: url("/static/images/kiddilycare_img_4.a99946a2270f.png");
 }
 #pierre-jade{
-  background-image: url(/static/images/kiddilycare_img_7.jpeg);
+  background-image: url("/static/images/kiddilycare_img_7.2bdbf1a2c73e.jpeg");
 }
 #pierres-jade{
-  background-image: url(/static/images/kiddilycare_img_7.jpeg);
+  background-image: url("/static/images/kiddilycare_img_7.2bdbf1a2c73e.jpeg");
   box-shadow: inset 0 0 0 100px rgba(0, 0, 0, 0.3);
 }
 #mode-ete{
-  background-image: url(/static/images/kiddilycare_img_6.jpeg);
+  background-image: url("/static/images/kiddilycare_img_6.9b984450a945.jpeg");
 }
 #tendances{
-  background-image: url(/static/images/kiddilycare_img_2.jpeg);
+  background-image: url("/static/images/kiddilycare_img_2.cf03d986a77d.jpeg");
 }
 #beaute{
-  background-image: url(/static/images/kiddilycare_img_2.jpeg);
+  background-image: url("/static/images/kiddilycare_img_2.cf03d986a77d.jpeg");
 }
 #accessoires{
-  background-image: url(/static/images/kiddilycare_img_5.jpeg);
+  background-image: url("/static/images/kiddilycare_img_5.2e297c0812c6.jpeg");
 }
 #soin-corps:hover{
   box-shadow: inset 0 0 0 100px rgba(255, 255, 255, 0.3);

@@ -1,3 +1,4 @@
+from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
@@ -51,7 +52,7 @@ class Product(models.Model):
     provider = models.ForeignKey(Provider, on_delete=models.SET_NULL, default="provider introuvable", null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     expiration_date = models.DateField(null=True, blank=True)
-    product_image = models.ImageField(null=True, default="Icon.png")
+    product_image = models.ImageField(null=True)
     quantity = models.IntegerField(null=True, blank=True, default=30)
     description = models.TextField(null=True, blank=True)
     category = models.CharField(max_length=100, null=True, choices=CATEGORY)

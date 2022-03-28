@@ -1,0 +1,93 @@
+@import url("base.a79987e4efa9.css");
+@import url("header.365588fb6925.css");
+@import url("footer.943b2a3276a0.css");
+
+.apropos-block-1{
+    background-color: white;
+    text-align: center;
+    padding: 20px clamp(20px, 150px, 250px);
+    margin: 20px clamp(5%, 20%, 30%);
+    border-radius: 5px;
+    box-shadow: 0 4px 5px 0 var(--secondaryColor);
+}
+
+.apropos-block-1 h2,
+.apropos-block-1 h1,
+.apropos-block-2 h2{
+    margin: 10px auto;
+}
+
+.apropos-block-2{
+    background-color: white;
+    display: flex;
+    border-radius: 5px;
+    margin: 20px clamp(5%, 20%, 30%);
+    box-shadow: 0 4px 5px 0 var(--secondaryColor);
+}
+
+.apropos-block-1 div,
+.apropos-block-2 div{
+    padding: clamp(5px, 20px, 50px);
+}
+
+.apropos-block-2 img{
+    width: 45%;
+    border-radius: 5px;
+}
+
+.apropos-block-3{
+    display: grid;
+    background-color: white;
+    grid-template-columns: repeat(3, 1fr);
+    border-radius: 5px;
+    margin: 20px clamp(5%, 10%, 30%);
+    gap: 2rem;
+    padding: 2rem;
+    box-shadow: 0 4px 5px 0 var(--secondaryColor);
+}
+
+.apropos-block-3 img{
+    margin: auto;
+    max-width: 100%;
+    border-radius: 5px;
+}
+
+.block-3-content{
+    text-align: center;
+}
+
+.block-3-content div{
+    padding: 20px;
+    text-align: center;
+    
+}
+
+.apropos-block-2:last-child{
+    text-align: center;
+}
+
+@media screen and (max-width: 950px) {
+    .apropos-block-1,
+    .apropos-block-2,
+    .apropos-block-3{
+        padding: 1rem;
+        margin: 5%;
+        display: flex;
+        flex-direction: column;
+      }
+      .apropos-block-1 div,
+      .apropos-block-2 div{
+          padding: 1rem;
+        }
+      .apropos-block-1 > img,
+      .apropos-block-2 > img{
+          min-width: 100%;
+        }
+      .apropos-block-3{
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+        gap: 2rem;
+      }
+
+
+}
