@@ -159,7 +159,7 @@ if os.getcwd() == '/app':
 
 
 
-AWS S3 BUCKET Configuration
+# AWS S3 BUCKET Configuration
 AWS_ACCESS_KEY_ID=env.str("AWS_ACCESS_KEY_ID")
 
 AWS_SECRET_ACCESS_KEY= env.str("AWS_SECRET_ACCESS_KEY")
