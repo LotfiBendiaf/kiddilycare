@@ -84,7 +84,7 @@ products.forEach((product) =>
         <hr style="width: 100%; margin: 1rem 0rem;" />
         <div class="modal-price">
           <h3>Price</h3>
-          <h2>$${dataPrice}</h2>
+          <h2>${dataPrice} €</h2>
         </div>
 
     </div>`;

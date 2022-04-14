@@ -40,9 +40,9 @@
           </thead>
           <tbody>
             <tr>
-              <td><span class="items">{{ order.get_cart_items }}</span></td>
+              <td><span class="items">x {{ order.get_cart_items }}</span></td>
               <td class="price">
-                $<span class="cart-total" style="font-size: 1.4rem;">{{ order.get_cart_total|floatformat:2 }}</span>
+                <span class="cart-total" style="font-size: 1.4rem;">{{ order.get_cart_total|floatformat:2 }} €</span>
               </td>
             </tr>
           </tbody>
@@ -77,8 +77,8 @@
               </td>
               <td class="quantity" style="position: relative;">x <span class="item-quantity">{{ item.quantity }}</span>
               </td>
-              <td id="table-price" class="item-price">${{ item.product.price|floatformat:2 }}</td>
-              <td class="price">$<span class="subtotal">{{ item.get_item_total|floatformat:2 }}</span></td>
+              <td id="table-price" class="item-price">{{ item.product.price|floatformat:2 }} €</td>
+              <td class="price"><span class="subtotal">{{ item.get_item_total|floatformat:2 }}</span> €</td>
             </tr>
             {% endfor %}
           </tbody>
@@ -182,7 +182,7 @@
     <!--Script-->
     <script defer src="{% static "js/process.js" %}"></script>
     <!-- Include the PayPal JavaScript SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=AX_eKl22nz2Q1bOHHLaw-0Vqlcohpcq5NMfRXyisO0NJ0lj75oBEpWHj4ouHy4UNgJTXH_0tV80wAnIY&currency=USD"></script>
+    <script src="https://www.paypal.com/sdk/js?client-id=AX_eKl22nz2Q1bOHHLaw-0Vqlcohpcq5NMfRXyisO0NJ0lj75oBEpWHj4ouHy4UNgJTXH_0tV80wAnIY&currency=EUR"></script>
     <script>
       var total = '{{ order.get_cart_total }}'
       // Render the PayPal button into #paypal-button-container

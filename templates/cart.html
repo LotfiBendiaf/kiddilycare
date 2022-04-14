@@ -63,7 +63,7 @@
                 alt=""
               />
             </td>
-            <td id="table-price"  class="item-price">${{ item.product.price|floatformat:2 }}</td>
+            <td id="table-price"  class="item-price">{{ item.product.price|floatformat:2 }} €</td>
             <td class="quantity" style="position: relative;">x <span class="item-quantity">{{ item.quantity }}</span>
               <span 
                 class="fas fa-plus-circle update-cart" 
@@ -75,7 +75,7 @@
               <span class="fas fa-minus-circle update-cart" data-product={{item.product.id}} data-action="remove"></span>
             </td>
             <td id="table-delete" ><span class="fas fa-trash delete" data-product={{item.product.id}} data-action="delete"></span></td>
-            <td class="price">$ <span class="subtotal">{{ item.get_item_total|floatformat:2 }}</span></td>
+            <td class="price"><span class="subtotal">{{ item.get_item_total|floatformat:2 }}</span> €</td>
           </tr>
           {% endfor %}
         </tbody>
@@ -93,7 +93,7 @@
           <tr>
             <td><span class="items">{{ order.get_cart_items }}</span></td>
             <td style="text-align: center" class="price">
-              $<span class="cart-total">{{ order.get_cart_total }}</span>
+              <span class="cart-total">{{ order.get_cart_total }}</span> €
             </td>
             <td><a class="btn-alt" href="{% url 'checkout' %}">Continue &#x2192;</a></td>
           </tr>
@@ -133,9 +133,9 @@
           <div>
             <h3 class="price">
               {% if product.isPromotional == 'Promo' %}
-              <del class="stroke">${{product.price|add:"15"|floatformat:2}}</del>
+              <del class="stroke">{{product.price|add:"15"|floatformat:2}} €</del>
               {% endif %}
-              ${{product.price|floatformat:2}}</h3>
+              {{product.price|floatformat:2}} €</h3>
             <h3 class="product-name">{{product.product_name}}</h3>
             <h5 class="category">{{product.category}}</h5>
     
