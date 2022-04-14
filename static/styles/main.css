@@ -348,7 +348,7 @@
 	justify-content: center;
 	align-items: center;
 	width: 50%;
-	background-color: var(--thirdColor);
+	background-color: white;
 	border-radius: 5px 0 0 5px;
 }
 

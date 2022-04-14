@@ -80,9 +80,9 @@
 				<div>
 					<h3 class="price">
 						{% if product.isPromotional == 'Promo' %}
-						<del class="stroke">${{product.price|add:"15"|floatformat:2}}</del>
+						<del class="stroke">{{product.price|add:"15"|floatformat:2}} €</del>
 						{% endif %}
-						${{product.price|floatformat:2}}</h3>
+						{{product.price|floatformat:2}} €</h3>
 					<h3 class="product-name">{{product.product_name}}</h3>
 					<h5 class="category">{{product.category}}</h5>
 
@@ -92,7 +92,7 @@
 						<span class="fa fa-star checked"></span>
 						<span class="fa fa-star checked"></span>
 						<span class="fa fa-star checked"></span>
-						<span class="fa fa-star"></span>
+						<span class="fa fa-star checked"></span>
 					</div>
 				</div>
 
@@ -152,9 +152,9 @@
 				<div>
 					<h3 class="price">
 						{% if product.isPromotional == 'Promo' %}
-						<del class="stroke">${{product.price|add:"15"|floatformat:2}}</del>
+						<del class="stroke">{{product.price|add:"15"|floatformat:2}} €</del>
 						{% endif %}
-						${{product.price|floatformat:2}}</h3>
+						{{product.price|floatformat:2}} €</h3>
 					<h3 class="product-name">{{product.product_name}}</h3>
 					<h5 class="category">{{product.category}}</h5>
 
@@ -262,9 +262,9 @@
 				<div>
 					<h3 class="price">
 						{% if product.isPromotional == 'Promo' %}
-						<del class="stroke">${{product.price|add:"15"|floatformat:2}}</del>
+						<del class="stroke">{{product.price|add:"15"|floatformat:2}} €</del>
 						{% endif %}
-						${{product.price|floatformat:2}}</h3>
+						{{product.price|floatformat:2}} €</h3>
 					<h3 class="product-name">{{product.product_name}}</h3>
 					<h5 class="category">{{product.category}}</h5>
 
