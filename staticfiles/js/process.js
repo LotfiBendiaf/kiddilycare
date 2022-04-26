@@ -58,7 +58,11 @@ function updateCart() {
                   }
             }
             }
-            else console.log("Cant delete more items");
+            else {
+              console.log("Cant delete more items");
+              cartItemDeleted(this);
+              location.reload();
+            }
       }
       else if (action == "delete") {
         console.log("Delete row function");
@@ -137,9 +141,8 @@ function cartTotalRemove() {
   if (
     parseInt(document.getElementsByClassName("cart-element")[0].getElementsByTagName('div')[0].innerText) >= 0
   ) {
-    document.getElementsByClassName("cart-element")[0].innerText =
-      parseInt(document.getElementsByClassName("cart-element")[0].getElementsByTagName('div')[0].innerText) -
-      1;
+    document.getElementsByClassName("cart-element")[0].getElementsByTagName('div')[0].innerText =
+      parseInt(document.getElementsByClassName("cart-element")[0].getElementsByTagName('div')[0].innerText) - 1;
   }
 }
 
@@ -161,7 +164,7 @@ function cartSubTotal(elt) {
   var prices = parseFloat(
     [
       ...elt.parentElement.parentElement.getElementsByClassName("item-price"),
-    ][0].innerText.split("$")[1]
+    ][0].innerText.split("€")[0]
   );
   elt.parentElement.parentElement.getElementsByClassName(
     "subtotal"

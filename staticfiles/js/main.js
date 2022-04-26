@@ -84,7 +84,7 @@ products.forEach((product) =>
         <hr style="width: 100%; margin: 1rem 0rem;" />
         <div class="modal-price">
           <h3>Price</h3>
-          <h2>$${dataPrice}</h2>
+          <h2>${dataPrice} €</h2>
         </div>
 
     </div>`;
@@ -104,17 +104,21 @@ products.forEach((product) =>
 
 addButtons.forEach((addButton) =>
   addButton.addEventListener("click", (e) => {
+    var dataAction = addButton.getAttribute("data-action");
     var dataID = addButton.getAttribute("data-product");
     var dataName = addButton.getAttribute("data-name");
     var dataImage = addButton.getAttribute("data-img");
     var dataPrice = addButton.getAttribute("data-price");
     var dataDesc = addButton.getAttribute("data-desc");
-    modalBar.innerHTML = `
-        <img style="width: 50px; height: 50px" src="${dataImage} " alt="">
-        <div style="height: min-content;" class="modal-title">${dataName} </div>
-        <div style="color: var(--fourthColor);"> Product added </div>
-    `;
-    openModalBar(modalBar);
+    if(dataAction == 'add'){
+      modalBar.innerHTML = `
+      <img style="width: 50px; height: 50px; border-radius: 7px;" src="${dataImage} " alt="">
+      <div style="height: min-content;" class="modal-title">${dataName} </div>
+      <div style="color: var(--secondaryColor);"> Produit ajouté </div>
+       `;
+      openModalBar(modalBar);
+    }
+
   })
 );
 
