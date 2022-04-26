@@ -166,9 +166,7 @@ function cartSubTotal(elt) {
       ...elt.parentElement.parentElement.getElementsByClassName("item-price"),
     ][0].innerText.split("€")[0]
   );
-  elt.parentElement.parentElement.getElementsByClassName(
-    "subtotal"
-  )[0].innerText = (prices * quantity).toFixed(2);
+  elt.parentElement.parentElement.getElementsByClassName("subtotal")[0].innerText = (prices * quantity).toFixed(2);
 }
 
 function cartTotal() {
