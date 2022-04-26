@@ -1,0 +1,181 @@
+<!--Base -->
+{% extends 'base.html' %} {% load static %} 
+{% block title %}Kiddily Care | Article {% endblock title %}
+<!--Meta description-->
+{% block meta %}
+<meta
+  name="description"
+  content="Kiddily Care est la référence du monde du soin et beauté, appareils de nettoyage et soin de visage et corps.
+  Retrouvez les meilleurs appareils de soin de visage et corps, nettoyage de peau et accessoires"
+/>
+{% endblock meta %}
+
+<!-- Style -->
+{% block style %} 
+    <link rel="stylesheet" href="{% static "styles/description.css" %}"> 
+    <link rel="stylesheet" href="{% static "styles/main.css" %}"> 
+{% endblock style %}
+
+<!-- Scripts -->
+{% block scripts %}
+<!-- Ajax  -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% endblock scripts %} 
+{% block content %}
+<div style="display: flex; justify-content: space-between; width: 100%;">
+    <a class="btn-alt" id="return-home-btn" href="{% url 'store' %}">&#x2190; Retour à la page accueil</a>
+    <a class="btn-alt" href="{% url 'cart' %}">Suivant &#x2192;</a>
+  </div>
+<div class="description-page">
+  <div>
+    <div class="product-images">
+        <img id="featured" src="{{product.imageURL}}" alt="" />
+      <div>
+        <img class="thumbnail active" src="{{product.imageURL}}" alt=""> 
+        <img class="thumbnail active" src="{% static "images/Product_1/2.jpeg"%}" alt=""> 
+        <img class="thumbnail active" src="{% static "images/Product_1/3.jpeg"%}" alt=""> 
+      </div>
+    </div>
+    <div class="product-info">
+        <h3>{{ product }}</h3>
+        <p>
+            {{ product.description }}
+            'Rouleau de Massage pour le visage et le corps, outil de Lifting de la peau, raffermissant et sans rides, soins de beauté'
+        </p>
+        <div class="rating">
+            Avis :
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
+            (19)
+        </div>
+        <div>
+            Disponible en stock
+        </div>
+
+        <h2>{{ product.price }} €</h2>
+        <button
+            id="add-btn"
+            data-product={{product.id}} data-action="add"
+            class="btn update-cart"
+            data-name="{{product.product_name}}"
+            data-img="{{product.imageURL}}"
+            data-price="{{product.price|floatformat:2}}"
+            >
+            <span style="margin-right: 20px;" class="fas fa-cart-plus"></span> Ajouter au pannier
+        </button>
+        <small>Livraison gratuite partout en France.</small>
+        <small>Notre politique d'expedition ... <a href="{% url 'shipping_policy' %}">en savoir plus.</a></small>
+        <div class="shipping-info">
+            <div>
+              <i class="fa-solid fa-leaf"></i>
+              <p>Satisfait ou remboursé</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-dolly"></i>
+              <p>Livraison offert</p>
+            </div>
+            <div>
+              <i class="fa-solid fa-shield"></i>
+              <p>Paiement securisé</p>
+            </div>
+          </div>
+
+    </div>
+  </div>
+    <div class="product-specs">
+        <h2>Spécifications:</h2> 
+        <div>
+            <ul>
+                <li>Article: masseur à rouleau de glace</li>
+                <li>Matériau: Plastique</li>
+                <li>Type de peau: tous les Types de peau</li>
+                <li>Couleur: Rose</li>
+                <li>Parties applicables: visage, cou, corps</li>
+            </ul>
+            <img src="{% static "images/Product_1/4.jpeg"%}" alt="">
+            <img src="{% static "images/Product_1/12.png"%}" alt="">
+        </div>
+        <br>
+        <h2>Caractéristiques:</h2>
+        <ol>            
+            <li>Le produit est largement utilisé dans l'anti-rides et l'élimination des ridules pour rendre la peau lisse.</li> 
+            <li>Rétrécit les pores et rafraîchit votre peau sans aucun produit chimique.</li>
+            <li>Le rouleau est facile à transporter pour sa conception unique et la poignée est très robuste et antidérapante.</li> 
+            <li>Le rouleau de peau glacée peut être dans le congélateur et réduire efficacement les allergies, calmer et apaiser la peau irritante.</li> 
+            <li>Favoriser la circulation sanguine et accélérer le métabolisme pour activer l'activité cellulaire.</li> 
+        </ol>
+
+        <div class="spec-images">
+            <img src="{% static "images/Product_1/8.jpeg"%}" alt="">
+            <img src="{% static "images/Product_1/2.jpeg"%}" alt="">
+            <img src="{% static "images/Product_1/1.jpeg"%}" alt="">
+            <img src="{% static "images/Product_1/5.jpeg"%}" alt="">
+            <img src="{% static "images/Product_1/3.jpeg"%}" alt="">
+            <img src="{% static "images/Product_1/7.jpeg"%}" alt="">
+        </div>
+        
+        
+        
+        
+    </div>
+</div>
+
+<div class="modal-bar" id="modal-bar"></div>	
+<div id="overlay"></div>		
+
+
+<!--Script-->
+<script defer src="{% static "js/main.js" %}"></script>
+<script defer src="{% static "js/process.js" %}"></script>
+<script defer src="{% static "js/product.js" %}"></script>
+
+<!--getToken-->
+<script type="text/javascript">
+    // User
+    var user = '{{ request.user }}'
+    
+    function getToken(name) {
+        let tokenValue = null;
+        if (document.cookie && document.cookie !== '') {
+                const tokens = document.cookie.split(';');
+                for (let i = 0; i < tokens.length; i++) {
+                        const token = tokens[i].trim();
+                        // Does this token string begin with the name we want?
+                        if (token.substring(0, name.length + 1) === (name + '=')) {
+                                tokenValue = decodeURIComponent(token.substring(name.length + 1));
+                                break;
+                        }
+                }
+        }
+        return tokenValue;
+    }
+    const csrftoken = getToken('csrftoken');
+    
+    function getCookie(name) {
+        var cookieArr = document.cookie.split(";");
+    
+        for (var i = 0; i < cookieArr.length; i++) {
+            var cookiePair = cookieArr[i].split("=");
+            if (name == cookiePair[0].trim()) {
+                return decodeURIComponent(cookiePair[1]);
+            }
+        }
+        return null;
+    }
+    
+    var cart = JSON.parse(getCookie("cart"));
+    
+    if (cart == undefined) {
+        cart = {};
+        console.log("Cart created! : ", cart);
+        document.cookie = "cart=" + JSON.stringify(cart) + ";domain=;path=/";
+    }
+    
+    console.log("Cart : ", cart);
+    
+    </script>
+
+{% endblock content %}

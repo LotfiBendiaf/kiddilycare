@@ -4,8 +4,8 @@
 {% block title %}Kiddily Care | Produits de soin du visage et corps & pierres de Jade{% endblock title %}
 <!--Meta description-->
 {% block meta %}
-	<meta name="description" content="Shop Mountain est l'endroit de tous les adeptes des vetements, accessoires et materiels de montagne.
-	Retrouve les meilleurs articles de randonnee ou d'equipement de montagne">
+	<meta name="description" content="Kiddily Care est la référence du monde du soin et beauté, appareils de nettoyage et soin de visage et corps.
+	Retrouvez les meilleurs appareils de soin de visage et corps, nettoyage de peau et accessoires">
 {% endblock meta %}
 
 <!-- Style -->
@@ -18,7 +18,7 @@
 <div class="banner">
 	<div class="banner-info">
 		<h1>Soldes de printemps 2022 Jusqu'à <span id="mainColor">50%</span></h1>
-		<p>Du <span id="mainColor">21</span> Mars au <span id="mainColor">4</span> Avril</p>
+		<p>Du <span id="mainColor">21</span> Avril au <span id="mainColor">10</span> Mai</p>
 	</div>
 </div>
 
@@ -75,7 +75,10 @@
 					{% for product in bestseller %}
 			<div class="product" data-product="{{product.id}}">
 				<div>
-					<img src="{{product.imageURL}}" alt="" />
+					<a href="{% url 'product' product.pk %}">
+						<img src="{{product.imageURL}}" alt="" />
+					</a>
+					
 				</div>
 				<div>
 					<h3 class="price">

@@ -1,6 +1,7 @@
 from unicodedata import category
 from django.shortcuts import render
 from django.http import JsonResponse
+from django.views.generic import DetailView
 import datetime
 from .models import *
 import json
@@ -31,6 +32,32 @@ def store(request):
 
     }
     return render(request, 'store.html', context)
+
+
+
+class productDetailView(DetailView):
+    model = Product
+    template_name = 'product.html'
+
+    def get_context_data(self, **kwargs):
+
+        product = Product.objects.get(pk=self.kwargs.get('pk'))
+
+        data = cartData(self.request)
+
+        cartItems = data['cartItems']
+        order = data['order']
+        items = data['items']
+
+        context = {
+            "product": product,
+            "order": order,
+            "items": items,
+            "cartItems": cartItems,
+            "products": products,
+
+        }
+        return context
 
 def collections(request):
     data = cartData(request)

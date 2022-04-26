@@ -4,8 +4,8 @@
 {% block title %}Kiddily Care | Pannier{% endblock title %}
 <!--Meta description-->
 {% block meta %}
-  <meta name="description" content="Shop Mountain est l'endroit de tous les adeptes des vetements, accessoires et materiels de montagne. 
-  Retrouve les meilleurs articles de randonnee ou d'equipement de montagne"> 
+  <meta name="description" content="Kiddily Care est la référence du monde du soin et beauté, appareils de nettoyage et soin de visage et corps.
+  Retrouvez les meilleurs appareils de soin de visage et corps, nettoyage de peau et accessoires"> 
 {% endblock meta %}
 
 <!-- Style -->
@@ -26,20 +26,20 @@
 
       <div style="display: flex; justify-content: space-between; width: 100%;">
         <a class="btn-alt" href="{% url 'store' %}">&#x2190; Return to store</a>
-        <a class="btn-alt" href="{% url 'checkout' %}">Continue &#x2192;</a>
+        <a class="btn-alt" href="{% url 'checkout' %}">Suivant &#x2192;</a>
       </div>
       <table>
         <thead id="table-delete">
-          <th><h3 style="text-align: left;">Shopping cart</h3></th>
+          <th><h3 style="text-align: left;">Pannier</h3></th>
         </thead>
         <thead>
           <tr>
-            <th id="table-product" class="table-headers" style="text-align: left;">Product</th>
+            <th id="table-product" class="table-headers" style="text-align: left;">Produit</th>
             <th class="table-headers">Image</th>
             <th id="table-price" class="table-headers">price</th>
-            <th class="table-headers">Quantity</th>
-            <th id="table-delete" class="table-headers">Delete</th>
-            <th class="table-headers" style="white-space: nowrap;">sub total</th>
+            <th class="table-headers">Quantité</th>
+            <th id="table-delete" class="table-headers">Supprimer</th>
+            <th class="table-headers" style="white-space: nowrap;">sous-total</th>
           </tr>
         </thead>
 
@@ -72,7 +72,13 @@
                 data-name="{{item.product.product_name}}"
                 data-img="{{item.product.imageURL}}">
               </span>
-              <span class="fas fa-minus-circle update-cart" data-product={{item.product.id}} data-action="remove"></span>
+              <span 
+                class="fas fa-minus-circle update-cart" 
+                data-product={{item.product.id}} 
+                data-action="remove"
+                data-name="{{item.product.product_name}}"
+                data-img="{{item.product.imageURL}}">
+              </span>
             </td>
             <td id="table-delete" ><span class="fas fa-trash delete" data-product={{item.product.id}} data-action="delete"></span></td>
             <td class="price"><span class="subtotal">{{ item.get_item_total|floatformat:2 }}</span> €</td>
@@ -84,7 +90,7 @@
       <table class="total-table">
         <thead>
           <tr>
-            <th class="table-headers">Items</th>
+            <th class="table-headers">Element</th>
             <th class="table-headers">Total</th>
             <th></th>
           </tr>
@@ -95,7 +101,7 @@
             <td style="text-align: center" class="price">
               <span class="cart-total">{{ order.get_cart_total }}</span> €
             </td>
-            <td><a class="btn-alt" href="{% url 'checkout' %}">Continue &#x2192;</a></td>
+            <td><a class="btn-alt" href="{% url 'checkout' %}">Suivant &#x2192;</a></td>
           </tr>
         </tbody>
       </table>
@@ -114,7 +120,6 @@
         <i class="fa-solid fa-shield"></i>
         <h3>Paiement securisé</h3>
       </div>
-
     </div>
 
     </div>
