@@ -59,6 +59,21 @@ class productDetailView(DetailView):
         }
         return context
 
+def product1(request):
+    data = cartData(request)
+
+    cartItems = data['cartItems']
+    order = data['order']
+    items = data['items']
+
+    context = {
+        "order": order,
+        "items": items,
+        "cartItems": cartItems,
+    }
+    return render(request, 'Products/product-1.html', context)
+
+
 def collections(request):
     data = cartData(request)
 

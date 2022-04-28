@@ -5,12 +5,14 @@ from . import views
 urlpatterns = [
     # Accueil
     path('', views.store, name = 'store'),
-    path('product/<int:pk>/', views.productDetailView.as_view(), name='product'),
     path('about/', views.about, name = 'about'),
     path('pages/blog/', views.blog, name = 'blog'),
     path('pages/contact/', views.contact, name = 'contact'),
     path('pages/help_center/', views.help_center, name = 'help_center'),
     # path('Admin-Operations/addProduct/', views.addProduct, name = 'addProduct'),
+
+    #Products
+    path('products/product1/', views.product1, name='product1'),
 
     #Collections
     path('collections/', views.collections, name = 'collections'),

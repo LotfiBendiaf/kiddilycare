@@ -29,17 +29,16 @@
 <div class="description-page">
   <div>
     <div class="product-images">
-        <img id="featured" src="{{product.imageURL}}" alt="" />
+      <img class="thumbnail active" id="featured" src="{% static "images/Product_1/pr_1.png"%}" alt=""> 
       <div>
-        <img class="thumbnail active" src="{{product.imageURL}}" alt=""> 
+        <img class="thumbnail active" src="{% static "images/Product_1/pr_1.png"%}" alt=""> 
         <img class="thumbnail active" src="{% static "images/Product_1/2.jpeg"%}" alt=""> 
-        <img class="thumbnail active" src="{% static "images/Product_1/3.jpeg"%}" alt=""> 
+        <img class="thumbnail active" src="{% static "images/Product_1/5.jpeg"%}" alt=""> 
       </div>
     </div>
     <div class="product-info">
-        <h3>{{ product }}</h3>
+        <h3>Product one</h3>
         <p>
-            {{ product.description }}
             'Rouleau de Massage pour le visage et le corps, outil de Lifting de la peau, raffermissant et sans rides, soins de beauté'
         </p>
         <div class="rating">
@@ -55,14 +54,14 @@
             Disponible en stock
         </div>
 
-        <h2>{{ product.price }} €</h2>
+        <h2><del class="stroke">{{23.97|add:15|floatformat:2}} €</del> 23.97 €</h2> 
         <button
             id="add-btn"
-            data-product={{product.id}} data-action="add"
+            data-product=1 data-action="add"
             class="btn update-cart"
-            data-name="{{product.product_name}}"
-            data-img="{{product.imageURL}}"
-            data-price="{{product.price|floatformat:2}}"
+            data-name="Product one"
+            data-img="{% static "images/Product_1/1.jpeg"%}"
+            data-price="23.97"
             >
             <span style="margin-right: 20px;" class="fas fa-cart-plus"></span> Ajouter au pannier
         </button>

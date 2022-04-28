@@ -771,6 +771,16 @@
 	padding: 1rem;
 	grid-gap: 1rem;
 	}
+	.description-page > div:first-child{
+		padding: 0 1rem;
+	}
+	.product-images > img{
+		max-width: 90%;
+	}
+	.product-images > div > img{
+		width: 80px;
+		height: 80px;
+	}
 	.product-specs > ol{
 		margin: 2rem 0rem;
 	}
