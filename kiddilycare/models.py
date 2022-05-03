@@ -2,6 +2,7 @@ from distutils.command.upload import upload
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from django import forms
 
 
 # Create your models here.
@@ -45,22 +46,20 @@ class Product(models.Model):
         ('Ete', 'Ete'),
         ('PierresJade', 'PierresJade'),
     )
+  
 
     product_name = models.CharField(max_length=200, null=True, blank=False)
     purchase_price = models.FloatField(null=True, blank=False)
     price = models.DecimalField(max_digits=7, decimal_places=2, default=0)
-    provider = models.ForeignKey(Provider, on_delete=models.SET_NULL, default="provider introuvable", null=True, blank=True)
+    provider = models.ForeignKey(Provider, on_delete=models.SET_NULL, null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True)
     expiration_date = models.DateField(null=True, blank=True)
-    product_image = models.ImageField(null=True)
-    quantity = models.IntegerField(null=True, blank=True, default=30)
+    product_main_image = models.ImageField(null=True)
     description = models.TextField(null=True, blank=True)
-    category = models.CharField(max_length=100, null=True, choices=CATEGORY)
     digital = models.BooleanField(default=False)
-    tax = models.FloatField(null=True, blank=True, default=0)
+    category = models.CharField(max_length=100, null=True, choices=CATEGORY)
     isPromotional = models.CharField(max_length=20, choices=Promotion.choices, default=Promotion.NO_PROMO)
     promotion = models.FloatField(null=True, blank=True, default=0)
-    qr_code = models.ImageField(null=True, blank=True)
 
     def __str__(self):
         return self.product_name
@@ -68,7 +67,7 @@ class Product(models.Model):
     @property
     def imageURL(self):
         try:
-            url = self.product_image.url
+            url = self.product_main_image.url
         except:
             url = ''
         return url
@@ -76,6 +75,26 @@ class Product(models.Model):
     @property
     def margin(self):
         return self.price-self.purchase_price
+
+
+class ProductImage(models.Model):
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    image = models.FileField()
+ 
+    def __str__(self):
+        return self.image.url
+class Specification(models.Model):
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    spec = models.CharField(max_length=500)
+ 
+    def __str__(self):
+        return self.spec
+class Characteristic(models.Model):
+    product = models.ForeignKey(Product, default=None, on_delete=models.CASCADE)
+    charac = models.CharField(max_length=500)
+ 
+    def __str__(self):
+        return self.charac
 
 class Order(models.Model):
 

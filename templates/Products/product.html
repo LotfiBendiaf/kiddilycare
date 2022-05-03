@@ -29,17 +29,17 @@
 <div class="description-page">
   <div>
     <div class="product-images">
-      <img class="thumbnail active" id="featured" src="{% static "images/Product_1/pr_1.png"%}" alt=""> 
+      <img class="thumbnail active" id="featured" src="{{ product.imageURL }}" alt=""> 
       <div>
-        <img class="thumbnail active" src="{% static "images/Product_1/pr_1.png"%}" alt=""> 
-        <img class="thumbnail active" src="{% static "images/Product_1/2.jpeg"%}" alt=""> 
-        <img class="thumbnail active" src="{% static "images/Product_1/5.jpeg"%}" alt=""> 
+        <img class="thumbnail active" id="featured" src="{{ product.imageURL }}" alt=""> 
+        <img class="thumbnail active" src="{{ images.0 }}" alt=""> 
+        <img class="thumbnail active" src="{{ images.1 }}" alt=""> 
       </div>
     </div>
     <div class="product-info">
-        <h3>Derma Massage Roller</h3>
+        <h3>{{ product.product_name }}</h3>
         <p>
-            'Rouleau de Massage pour le visage et le corps, outil de Lifting de la peau, raffermissant et sans rides, soins de beauté'
+          {{ product.description }}
         </p>
         <div class="rating">
             Avis :
@@ -54,15 +54,15 @@
             Disponible en stock
         </div>
 
-        <h2><del class="stroke">{{23.97|add:15|floatformat:2}} €</del> 23.97 €</h2> 
-        <button
-            id="add-btn"
-            data-product=1 data-action="add"
-            class="btn update-cart"
-            data-name="Product one"
-            data-img="{% static "images/Product_1/1.jpeg"%}"
-            data-price="23.97"
-            >
+        <h2><del class="stroke">{{product.price|add:"15"|floatformat:2}} €</del> {{product.price|floatformat:2}} €</h2> 
+          <button
+          id="add-btn"
+          data-product={{product.id}} data-action="add"
+          class="btn update-cart"
+          data-name="{{product.product_name}}"
+          data-img="{{product.imageURL}}"
+          data-price="{{product.price|floatformat:2}}"
+          >
             <span style="margin-right: 20px;" class="fas fa-cart-plus"></span> Ajouter au pannier
         </button>
         <small>Livraison gratuite partout en France.</small>
@@ -87,24 +87,20 @@
     <div class="product-specs">
         <h2>Spécifications:</h2> 
         <div>
-            <ul>
-                <li>Article: masseur à rouleau de glace</li>
-                <li>Matériau: Plastique</li>
-                <li>Type de peau: tous les Types de peau</li>
-                <li>Couleur: Rose</li>
-                <li>Parties applicables: visage, cou, corps</li>
-            </ul>
-            <img src="{% static "images/Product_1/4.jpeg"%}" alt="">
-            <img src="{% static "images/Product_1/12.png"%}" alt="">
+          <ul>
+            {% for spec in specs %}
+              <li>{{ spec }}</li>
+            {% endfor %}
+          </ul>
+          <img src="{{ images.5 }}" alt="">
+          <img src="{{ images.1 }}" alt="">
         </div>
         <br>
         <h2>Caractéristiques:</h2>
         <ol>            
-            <li>Le produit est largement utilisé dans l'anti-rides et l'élimination des ridules pour rendre la peau lisse.</li> 
-            <li>Rétrécit les pores et rafraîchit votre peau sans aucun produit chimique.</li>
-            <li>Le rouleau est facile à transporter pour sa conception unique et la poignée est très robuste et antidérapante.</li> 
-            <li>Le rouleau de peau glacée peut être dans le congélateur et réduire efficacement les allergies, calmer et apaiser la peau irritante.</li> 
-            <li>Favoriser la circulation sanguine et accélérer le métabolisme pour activer l'activité cellulaire.</li> 
+          {% for charac in characs %}
+            <li>{{ charac }}</li>
+          {% endfor %}
         </ol>
 
         <div class="spec-images">

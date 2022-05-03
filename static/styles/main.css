@@ -775,7 +775,7 @@
 		padding: 0 1rem;
 	}
 	.product-images > img{
-		max-width: 90%;
+		width: 80%;
 	}
 	.product-images > div > img{
 		width: 80px;

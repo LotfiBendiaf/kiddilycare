@@ -37,13 +37,15 @@ def store(request):
 
 class productDetailView(DetailView):
     model = Product
-    template_name = 'product.html'
+    template_name = 'Products/product.html'
 
     def get_context_data(self, **kwargs):
 
-        product = Product.objects.get(pk=self.kwargs.get('pk'))
-
         data = cartData(self.request)
+        product = Product.objects.get(pk=self.kwargs.get('pk'))
+        images = ProductImage.objects.filter(product=product)
+        specs = Specification.objects.filter(product=product)
+        characs = Characteristic.objects.filter(product=product)
 
         cartItems = data['cartItems']
         order = data['order']
@@ -51,6 +53,9 @@ class productDetailView(DetailView):
 
         context = {
             "product": product,
+            "specs": specs,
+            "characs": characs,
+            "images": images,
             "order": order,
             "items": items,
             "cartItems": cartItems,
@@ -58,21 +63,6 @@ class productDetailView(DetailView):
 
         }
         return context
-
-def product1(request):
-    data = cartData(request)
-
-    cartItems = data['cartItems']
-    order = data['order']
-    items = data['items']
-
-    context = {
-        "order": order,
-        "items": items,
-        "cartItems": cartItems,
-    }
-    return render(request, 'Products/product-1.html', context)
-
 
 def collections(request):
     data = cartData(request)
