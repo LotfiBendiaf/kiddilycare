@@ -92,7 +92,7 @@
               <li>{{ spec }}</li>
             {% endfor %}
           </ul>
-          <img src="{{ images.5 }}" alt="">
+          <img src="{{ images.0 }}" alt="">
           <img src="{{ images.1 }}" alt="">
         </div>
         <br>
@@ -104,12 +104,9 @@
         </ol>
 
         <div class="spec-images">
-            <img src="{% static "images/Product_1/8.jpeg"%}" alt="">
-            <img src="{% static "images/Product_1/2.jpeg"%}" alt="">
-            <img src="{% static "images/Product_1/1.jpeg"%}" alt="">
-            <img src="{% static "images/Product_1/5.jpeg"%}" alt="">
-            <img src="{% static "images/Product_1/3.jpeg"%}" alt="">
-            <img src="{% static "images/Product_1/7.jpeg"%}" alt="">
+          {% for image in images %}
+            <img src="{{ image }}" alt="">
+          {% endfor %}
         </div>
         
         
