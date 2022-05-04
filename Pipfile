@@ -13,6 +13,7 @@ whitenoise = "*"
 gunicorn = "*"
 boto3 = "*"
 django-storages = "*"
+django-multiselectfield = "*"
 
 [dev-packages]
 
