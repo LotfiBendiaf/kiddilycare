@@ -131,9 +131,12 @@
     
       <div style="display: grid; grid-template-columns: repeat(2, fr);" class="products main-container">
         {% for product in products %}
-        <div class="product fade-in" data-product="{{product.id}}">
+        <div class="product" data-product="{{product.id}}">
           <div>
-            <img src="{{product.imageURL}}" alt="" />
+            <a href="{% url 'product' product.pk %}">
+              <img src="{{product.imageURL}}" alt="" />
+            </a>
+            
           </div>
           <div>
             <h3 class="price">
@@ -143,30 +146,21 @@
               {{product.price|floatformat:2}} €</h3>
             <h3 class="product-name">{{product.product_name}}</h3>
             <h5 class="category">{{product.category}}</h5>
-    
-          
+  
+  
             <div class="rating">
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
               <span class="fa fa-star checked"></span>
-              <span class="fa fa-star"></span>
+              <span class="fa fa-star checked"></span>
             </div>
           </div>
-    
+  
           <div class="actions">
-            <button 
-            id="detail-btn"
-            class="details"
-            data-product="{{product.id}}"
-            data-name="{{product.product_name}}"
-            data-img="{{product.imageURL}}"
-            data-price="{{product.price}}"
-            data-desc="{{product.description}}">
-            Details
-            </button>
             <button
               id="add-btn"
+              onclick="reload()"
               data-product={{product.id}} data-action="add"
               class="btn update-cart"
               data-name="{{product.product_name}}"
@@ -176,18 +170,17 @@
               <span style="margin-right: 20px;" class="fas fa-cart-plus"></span> Ajouter au pannier
             </button>
           </div>
-    
+  
           <div class="news">
             <span>NEWS</span>
           </div>
-    
+  
           {% if product.isPromotional == "Promo"%}
           <div class="promo">
             <span>PROMO</span>
           </div>
           {% endif %}
         </div>
-    
         {% endfor %}
       </div>
   
@@ -196,7 +189,16 @@
     <div class="modal" id="modal"></div>
     <div class="modal-bar" id="modal-bar"></div>
     <div id="overlay"></div>
-</div>
+  </div>
+
+  <script>
+    function reload() {
+      document.getElementById("add-btn").innerHTML = "ARTICLE AJOUTÉ";
+      document.getElementById("add-btn").style.backgroundColor = "gray";
+      location.reload();
+    }
+  </script>
+
   <script defer src="{% static "js/process.js" %}"></script>
   <script defer src="{% static "js/main.js" %}"></script>
   <script>
