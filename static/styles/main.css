@@ -759,7 +759,16 @@
 	display: block;
 	}
 	.banner{
-	height: 110vh;
+	height: 80vh;
+	}
+	.banner-info h1{
+		font-size: 2em;
+		color: white;
+	}
+	
+	.banner-info p{
+		font-size: 1rem;
+		color: white;
 	}
 	.collections {
 	display: grid;
