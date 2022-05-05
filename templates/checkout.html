@@ -24,7 +24,7 @@
   {% block content %}
     <div class="cart-container">
 
-      <div style="width: 100%;">
+      <div style="width: 100%; display: flex; justify-content: space-around;">
         <a class="btn-alt" href="{% url 'cart' %}">&#x2190; Retour au pannier</a>
       </div>
      
@@ -109,7 +109,7 @@
             <h3>Informations d'expédition <i class="fas fa-shipping-fast"></i></h3>
 
             <!--Country list -->
-            <div class="btn-alt" style="margin-top: 20px;">
+            <div class="btn-alt" style="margin-top: 20px; padding: 2px; text-align: center; border-radius: 5px;">
               {% include "country-list.html" %}
             </div>
             <div style="display: flex;">

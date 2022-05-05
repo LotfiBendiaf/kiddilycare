@@ -54,7 +54,7 @@ footer > div > div > ul {
     justify-content: space-around;
 }
 
-.socials > i{
+.socials > a > i {
     font-size: 2rem;
     cursor: pointer;
     color: var(--alternativeColor);
