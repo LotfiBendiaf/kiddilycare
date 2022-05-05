@@ -132,7 +132,7 @@ header {
 }
 #pierres-jade{
   background-image: url(/static/images/kiddilycare_img_7.jpeg);
-  box-shadow: inset 0 0 0 100px rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.3);
 }
 #mode-ete{
   background-image: url(/static/images/kiddilycare_img_6.jpeg);
